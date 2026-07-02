@@ -230,6 +230,276 @@ header.scrolled {
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
+
+/* === ABOUT HERO === */
+.about-hero {
+  padding: 160px 0 100px;
+  background: var(--ink);
+  color: var(--cream-text);
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid rgba(201,160,106,0.15);
+}
+.about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(201,160,106,0.06), transparent 70%);
+  pointer-events: none;
+}
+.about-hero-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.about-hero-sub::before, .about-hero-sub::after {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--brass-light);
+  opacity: 0.5;
+}
+.about-hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--cream-text);
+}
+
+/* === THE 3-ACT TIMELINE STORY === */
+.timeline-act {
+  padding: 110px 0;
+  position: relative;
+  background: var(--paper);
+}
+#act-2 {
+  background: var(--paper-2);
+  border-top: 1px solid rgba(23, 19, 15, 0.05);
+  border-bottom: 1px solid rgba(23, 19, 15, 0.05);
+}
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+}
+.timeline-grid.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+@media (max-width: 960px) {
+  .timeline-grid, .timeline-grid.reverse {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+  .timeline-act {
+    padding: 60px 0;
+  }
+  .act-image-box {
+    order: -1 !important; /* Image always on top on mobile */
+  }
+}
+
+/* Eyebrow Labels */
+.act-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.act-header::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--brass);
+}
+
+/* Bold Editorial Headlines */
+.act-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+body.lang-te .act-title {
+  font-family: 'Noto Serif Telugu', serif;
+  font-weight: 700;
+}
+
+/* Constrained Paragraph Width */
+.act-copy {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(23, 19, 15, 0.85);
+  max-width: 620px;
+}
+body.lang-te .act-copy {
+  font-family: 'Noto Sans Telugu', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* Act Image Box */
+.act-image-box {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border: 1px solid var(--ink);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(23, 19, 15, 0.08);
+  background: var(--paper-2);
+  position: relative;
+}
+.act-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.act-image-box:hover img {
+  transform: scale(1.03);
+}
+
+#act-1 .act-image-box img {
+  filter: sepia(0.12) contrast(1.02) brightness(0.98);
+}
+#act-2 .act-image-box img {
+  filter: contrast(1.08) saturate(1.05);
+}
+#act-3 .act-image-box img {
+  filter: sepia(0.25) contrast(0.98) brightness(0.95);
+}
+
+/* === PULL QUOTES === */
+.journey-footer {
+  background: var(--ink);
+  color: var(--cream-text);
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  border-top: 1px solid rgba(201, 160, 106, 0.15);
+  border-bottom: 1px solid rgba(201, 160, 106, 0.15);
+}
+.journey-footer::before {
+  content: "“";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Fraunces', serif;
+  font-size: 8rem;
+  color: var(--brass);
+  opacity: 0.12;
+  line-height: 1;
+}
+.journey-footer-text {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  line-height: 1.45;
+  color: var(--cream-text);
+  max-width: 860px;
+  margin: 0 auto;
+}
+body.lang-te .journey-footer-text {
+  font-family: 'Noto Serif Telugu', serif;
+  font-style: normal;
+  line-height: 1.6;
+}
+
+#shop-pride {
+  padding: 110px 0;
+  background: var(--ink);
+  color: var(--cream-text);
+  text-align: center;
+  border-top: 1px solid rgba(201, 160, 106, 0.1);
+}
+.pride-text {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.45;
+  color: var(--cream-text);
+  max-width: 820px;
+  margin: 0 auto 36px;
+}
+body.lang-te .pride-text {
+  font-family: 'Noto Serif Telugu', serif;
+  font-style: normal;
+  line-height: 1.6;
+}
+
+/* === SECTION 3 — WHY ROKKSTAR (Philosophy) === */
+#philosophy {
+  padding: 120px 0;
+  background: var(--paper) !important;
+  border-top: 1px solid rgba(23, 19, 15, 0.08);
+}
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--brass);
+}
+.philosophy-image {
+  width: 100%;
+  aspect-ratio: 16/11;
+  border: 1px solid var(--ink);
+  background-image: url('assets/fabric_pure_linen.png');
+  background-size: cover;
+  background-position: center;
+  filter: sepia(0.05) contrast(1.02);
+  box-shadow: 0 16px 40px rgba(23,19,15,0.08);
+}
+@media (max-width: 900px) {
+  .philosophy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+  #philosophy {
+    padding: 70px 0;
+  }
+}
+
 /* ========================================================
    GLOBAL MOBILE RESPONSIVENESS FIXES
    - Prevents horizontal scroll / unwanted zoom on ALL pages
