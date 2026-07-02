@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1503,6 +1503,18 @@ header.scrolled {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--brass-light);
+}
+
+/* ========================================================
+   GLOBAL MOBILE RESPONSIVENESS FIXES
+   - Prevents horizontal scroll / unwanted zoom on ALL pages
+   - Fixes iOS auto-zoom on form inputs (font-size >= 16px)
+   ======================================================== */
+html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+img, video, iframe, svg { max-width: 100%; height: auto; }
+@media(max-width:768px) {
+  input, textarea, select { font-size: 16px !important; }
+  p, h1, h2, h3, h4, span, li, td, th { word-break: break-word; overflow-wrap: break-word; }
 }
 </style>
 </head>
