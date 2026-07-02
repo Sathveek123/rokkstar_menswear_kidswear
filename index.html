@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -427,8 +427,13 @@ header.scrolled {
     order: 2;
   }
   .menu-toggle {
+    position: fixed;
+    right: 14px;
+    top: 12px;
+    z-index: 10001;
     display: flex;
-    order: 3;
+    padding: 10px;
+    cursor: pointer;
   }
   .navlinks {
     display: none;
@@ -2800,25 +2805,39 @@ function updateTape(){
 }
 window.addEventListener('scroll', updateTape, {passive:true});
 updateTape();
-function toggleMobileMenu() {
+function closeMobileMenu() {
   const navlinks = document.querySelector('.navlinks');
   const btn = document.getElementById('mobileMenuBtn');
   const toTopBtn = document.getElementById('toTop');
   if (navlinks && btn) {
-    navlinks.classList.toggle('mobile-active');
-    btn.classList.toggle('active');
-    // Prevent body and html scroll when menu is open
-    if (navlinks.classList.contains('mobile-active')) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-      if (toTopBtn) toTopBtn.style.display = 'none';
-    } else {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      if (toTopBtn) toTopBtn.style.display = '';
-    }
+    navlinks.classList.remove('mobile-active');
+    btn.classList.remove('active');
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    if (toTopBtn) toTopBtn.style.display = '';
   }
 }
+function toggleMobileMenu() {
+  const navlinks = document.querySelector('.navlinks');
+  const btn = document.getElementById('mobileMenuBtn');
+  const toTopBtn = document.getElementById('toTop');
+  if (!navlinks || !btn) return;
+  const isOpen = navlinks.classList.contains('mobile-active');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    navlinks.classList.add('mobile-active');
+    btn.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    if (toTopBtn) toTopBtn.style.display = 'none';
+  }
+}
+// Close menu when any nav link is tapped
+document.querySelectorAll('.navlinks a').forEach(function(link) {
+  link.addEventListener('click', function() { closeMobileMenu(); });
+});
+
 </script>
 </body>
 </html>  
