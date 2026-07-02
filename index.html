@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROKKSTAR — Premium Menswear &amp; Kidswear · Gandhinagar, Vijayawada</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -415,18 +415,7 @@ header.scrolled {
     height: 64px;
     padding: 0 24px;
   }
-  .logo {
-    position: relative;
-    z-index: 10000;
-  }
-  .nav-cta {
-    margin-left: auto;
-    margin-right: 16px;
-    z-index: 450;
-  }
-  .menu-toggle {
-    display: flex;
-  }
+  .logo {\n    position: relative;\n    z-index: 10000;\n    order: 1;\n  }\n  .nav-cta {\n    margin-left: auto;\n    margin-right: 16px;\n    z-index: 450;\n    order: 2;\n  }\n  .menu-toggle {\n    display: flex;\n    order: 3;\n  }
   .navlinks {
     display: none;
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -462,6 +451,28 @@ header.scrolled {
   .btn span.txt { display: none; }
   .nav-cta { gap: 8px; }
   .btn { padding: 9px 14px; }
+}
+@media(max-width:600px){
+  .test-slideshow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    min-height: auto;
+  }
+  .test-container {
+    width: 100%;
+    flex: none;
+    order: 1;
+    min-height: 150px;
+  }
+  .test-arrow.prev {
+    order: 2;
+    margin-left: auto;
+  }
+  .test-arrow.next {
+    order: 3;
+    margin-right: auto;
+  }
 }
 
 /* ===== Section Scaffolding ===== */
@@ -985,9 +996,15 @@ section{position:relative; padding:120px 0; border-bottom:1px solid var(--line);
 /* ===== Size guide ===== */
 .size-wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
 @media(max-width:900px){.size-wrap{grid-template-columns:1fr;}}
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+}
 table.sizes{width:100%; border-collapse:collapse; font-size:.85rem;}
 table.sizes caption{text-align:left; font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oxblood); margin-bottom:14px;}
-table.sizes th, table.sizes td{border:1px solid var(--line); padding:11px 10px; text-align:center;}
+table.sizes th, table.sizes td{border:1px solid var(--line); padding:11px 10px; text-align:center; white-space: nowrap;}
 table.sizes th{background:var(--paper-2); font-weight:600; font-size:.75rem; text-transform:uppercase; letter-spacing:.03em;}
 table.sizes td:first-child, table.sizes th:first-child{text-align:left; font-weight:500;}
 .size-note{margin-top:18px; font-size:.82rem; color:#5a5142;}
@@ -2044,7 +2061,7 @@ header.scrolled {
       <span class="lang-te">మీ సైజు తెలియదా? <br>ఇక్కడ సరిచూసుకోండి.</span>
     </h2>
     <div class="size-wrap reveal">
-      <div>
+      <div class="table-responsive">
         <table class="sizes">
           <caption class="lang-en">Menswear — Shirts &amp; Tees</caption>
           <caption class="lang-te">మెన్స్ షర్టులు &amp; టీ-షర్టుల సైజులు</caption>
@@ -2064,7 +2081,7 @@ header.scrolled {
           </tbody>
         </table>
       </div>
-      <div>
+      <div class="table-responsive">
         <table class="sizes">
           <caption class="lang-en">Kidswear — Age Guide</caption>
           <caption class="lang-te">కిడ్స్ వేర్ — వయసు ప్రకారం గైడ్</caption>
@@ -2692,15 +2709,39 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.test-slide');
 
 function changeSlide(direction) {
+  if (slides.length === 0) return;
   slides[currentSlide].classList.remove('active');
   currentSlide = (currentSlide + direction + slides.length) % slides.length;
   slides[currentSlide].classList.add('active');
 }
 
 // Auto-rotate testimonials
-setInterval(() => {
+let autoSlideInterval = setInterval(() => {
   changeSlide(1);
 }, 6000);
+
+// Touch swipe gestures for mobile reviews
+const testContainer = document.querySelector('.test-container');
+if (testContainer) {
+  let touchStartX = 0;
+  let touchEndX = 0;
+  testContainer.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    clearInterval(autoSlideInterval);
+  }, {passive: true});
+  testContainer.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, {passive: true});
+  
+  function handleSwipe() {
+    if (touchEndX < touchStartX - 50) {
+      changeSlide(1);
+    } else if (touchEndX > touchStartX + 50) {
+      changeSlide(-1);
+    }
+  }
+}
 
 // FAQ Toggle
 function toggleFaq(btn){

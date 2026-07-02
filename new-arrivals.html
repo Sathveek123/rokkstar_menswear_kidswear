@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROKKSTAR — New Arrivals · Fresh Drops Gandhinagar, Vijayawada</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,18 +169,7 @@ header.scrolled {
     height: 64px;
     padding: 0 24px;
   }
-  .logo {
-    position: relative;
-    z-index: 10000;
-  }
-  .nav-cta {
-    margin-left: auto;
-    margin-right: 16px;
-    z-index: 450;
-  }
-  .menu-toggle {
-    display: flex;
-  }
+  .logo {\n    position: relative;\n    z-index: 10000;\n    order: 1;\n  }\n  .nav-cta {\n    margin-left: auto;\n    margin-right: 16px;\n    z-index: 450;\n    order: 2;\n  }\n  .menu-toggle {\n    display: flex;\n    order: 3;\n  }
   .navlinks {
     display: none;
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -523,7 +512,7 @@ footer {
 }
 </style>
 </head>
-<body>
+<body class="lang-en">
 
 <header>
   <div class="nav">
