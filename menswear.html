@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -765,9 +765,8 @@ function renderGrid() {
   grid.innerHTML = '';
 
   products.forEach(p => {
-    // Check filter matches
     if (p.isStrip) {
-      // Interspersed text strip displays only if its era matches, or era filter is 'all'
+      // Interspersed text strip — show only if era matches filter or filter is 'all'
       if (activeEra === 'all' || activeEra === p.era) {
         const stripHtml = `
           <div class="story-strip">
@@ -782,37 +781,41 @@ function renderGrid() {
         `;
         grid.insertAdjacentHTML('beforeend', stripHtml);
       }
-        const waText = encodeURIComponent(`Hi Rokkstar, I am interested in inquiring about the ${p.nameEn} (${p.era.toUpperCase()}) from your menswear page.`);
-        const cardHtml = `
-          <div class="product-card ${p.era}-card">
-            <div class="prod-img-box">
-              <span class="era-badge">${p.era}</span>
-              <img src="${p.img}" alt="${p.nameEn}">
+    } else {
+      // Regular product card — filter by era AND category
+      const eraMatch = activeEra === 'all' || activeEra === p.era;
+      const catMatch = activeCat === 'all' || activeCat === p.cat;
+      if (!eraMatch || !catMatch) return;
+
+      const waText = encodeURIComponent(`Hi Rokkstar, I am interested in the ${p.nameEn} (${p.era.toUpperCase()}) from your menswear collection.`);
+      const cardHtml = `
+        <div class="product-card ${p.era}-card">
+          <div class="prod-img-box">
+            <span class="era-badge">${p.era}</span>
+            <img src="${p.img}" alt="${p.nameEn}" loading="lazy">
+          </div>
+          <div class="prod-info">
+            <h3 class="prod-name">
+              <span class="lang-en">${p.nameEn}</span>
+              <span class="lang-te">${p.nameTe}</span>
+            </h3>
+            <div class="prod-meta">
+              <span class="lang-en">Category: ${p.cat}</span>
+              <span class="lang-te">వర్గం: ${p.cat === 'ethnic' ? 'ఎథ్నిక్ వేర్' : p.cat}</span>
             </div>
-            <div class="prod-info">
-              <h3 class="prod-name">
-                <span class="lang-en">${p.nameEn}</span>
-                <span class="lang-te">${p.nameTe}</span>
-              </h3>
-              <div class="prod-meta">
-                <span>Category: </span>
-                <span class="lang-en">${p.cat}</span>
-                <span class="lang-te">${p.cat === 'ethnic' ? 'ఎథ్నిక్ వేర్' : p.cat}</span>
-              </div>
-              <div class="prod-action">
-                <a class="inquiry-btn" href="https://wa.me/919666896418?text=${waText}" target="_blank" rel="noopener">
-                  <svg class="whatsapp-icon-svg" viewBox="0 0 448 512">
-                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32 100.5 32 0 132.5 0 255.9c0 39.3 10.2 77.7 29.8 111.6L0 512l148.9-39c32.8 17.9 69.6 27.3 107.1 27.3 123.4 0 223.9-100.4 223.9-223.9 0-59.8-23.2-116.1-65.1-158.1zM223.9 470.5c-33.3 0-66-8.9-94.5-25.7l-6.8-4-88.3 23.1 23.5-86.1-4.4-7c-18.4-29.3-28.1-63.1-28.1-97.9 0-101.4 82.5-183.9 183.9-183.9 49.1 0 95.3 19.2 130 53.9s53.9 80.9 53.9 130c0 101.4-82.5 183.9-183.9 183.9zm101.3-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-                  </svg>
-                  <span class="lang-en">Enquire on WhatsApp</span>
-                  <span class="lang-te">వాట్సాప్ ఎంక్వైరీ</span>
-                </a>
-              </div>
+            <div class="prod-action">
+              <a class="inquiry-btn" href="https://wa.me/919666896418?text=${waText}" target="_blank" rel="noopener">
+                <svg class="whatsapp-icon-svg" viewBox="0 0 448 512">
+                  <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32 100.5 32 0 132.5 0 255.9c0 39.3 10.2 77.7 29.8 111.6L0 512l148.9-39c32.8 17.9 69.6 27.3 107.1 27.3 123.4 0 223.9-100.4 223.9-223.9 0-59.8-23.2-116.1-65.1-158.1zM223.9 470.5c-33.3 0-66-8.9-94.5-25.7l-6.8-4-88.3 23.1 23.5-86.1-4.4-7c-18.4-29.3-28.1-63.1-28.1-97.9 0-101.4 82.5-183.9 183.9-183.9 49.1 0 95.3 19.2 130 53.9s53.9 80.9 53.9 130c0 101.4-82.5 183.9-183.9 183.9zm101.3-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                </svg>
+                <span class="lang-en">Enquire on WhatsApp</span>
+                <span class="lang-te">వాట్సాప్ ఎంక్వైరీ</span>
+              </a>
             </div>
           </div>
-        `;
-        grid.insertAdjacentHTML('beforeend', cardHtml);
-      }
+        </div>
+      `;
+      grid.insertAdjacentHTML('beforeend', cardHtml);
     }
   });
 }

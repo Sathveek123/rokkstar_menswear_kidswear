@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -228,13 +228,7 @@ header.scrolled {
 </head>
 <body class="lang-en">
 
-<div id="tape">
-  <svg viewBox="0 0 26 500" preserveAspectRatio="none">
-    <rect x="9" y="0" width="8" height="500" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
-    <g id="ticks" stroke="var(--ink)" stroke-width="1"></g>
-    <circle id="tapeDot" class="tape-marker" cx="13" cy="0" r="5" fill="var(--oxblood)"/>
-  </svg>
-</div>
+
 
 <header>
   <div class="nav">
@@ -486,28 +480,7 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:.12});
 els.forEach(el=>io.observe(el));
 
-// measuring tape ticks + scroll marker
-const ticksG = document.getElementById('ticks');
-const tapeHeight = 500;
-for(let i=0;i<=50;i++){
-  const y = i*10;
-  const long = i%5===0;
-  const tick = document.createElementNS('http://www.w3.org/2000/svg','line');
-  tick.setAttribute('x1', long ? 9 : 11);
-  tick.setAttribute('x2', 17);
-  tick.setAttribute('y1', y);
-  tick.setAttribute('y2', y);
-  tick.setAttribute('stroke-width', long ? 1 : .6);
-  ticksG.appendChild(tick);
-}
-const dot = document.getElementById('tapeDot');
-function updateTape(){
-  const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-  const y = Math.min(Math.max(scrollPct,0),1) * tapeHeight;
-  dot.setAttribute('cy', y);
-}
-window.addEventListener('scroll', updateTape, {passive:true});
-updateTape();
+
 function toggleMobileMenu() {
   const navlinks = document.querySelector('.navlinks');
   const btn = document.getElementById('mobileMenuBtn');
