@@ -1,0 +1,31 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/menswear", "destination": "/menswear.html" },
+    { "source": "/kidswear", "destination": "/kidswear.html" },
+    { "source": "/new-arrivals", "destination": "/new-arrivals.html" },
+    { "source": "/lookbook", "destination": "/lookbook.html" },
+    { "source": "/fabric", "destination": "/fabric.html" },
+    { "source": "/store", "destination": "/store.html" },
+    { "source": "/reviews", "destination": "/reviews.html" },
+    { "source": "/contact", "destination": "/contact.html" }
+  ]
+}
