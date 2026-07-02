@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROKKSTAR — Our Story · Premium Boutique Gandhinagar, Vijayawada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Telugu:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#17130f;
+  --paper:#ece3d2;
+  --paper-2:#e2d6bd;
+  --oxblood:#6d2430;
+  --oxblood-deep:#4f1620;
+  --brass:#a9814a;
+  --brass-light:#c9a06a;
+  --pine:#2b3b32;
+  --line:#c7b696;
+  --cream-text:#f4ecdd;
+  --max:1180px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter', sans-serif;
+  font-weight:400;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Language styling helpers */
+body.lang-te {
+  font-family: 'Noto Sans Telugu', 'Inter', sans-serif;
+}
+body.lang-te h1, body.lang-te h2, body.lang-te h3, body.lang-te .disp {
+  font-family: 'Noto Serif Telugu', 'Fraunces', serif;
+}
+body.lang-en .lang-te { display: none !important; }
+body.lang-te .lang-en { display: none !important; }
+
+.te{font-family:'Noto Sans Telugu', sans-serif;}
+h1,h2,h3,.disp{font-family:'Fraunces', serif;}
+.disp-te{font-family:'Noto Serif Telugu', serif;}
+.mono{font-family:'JetBrains Mono', monospace; letter-spacing:.04em;}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+@media(max-width:720px){.wrap{padding:0 20px;}}
+
+/* ===== Header & Navigation — 3-zone premium redesign ===== */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:400;
+  background:rgba(23,19,15,.82);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,160,106,.14);
+  transition: background-color 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+header.scrolled {
+  background: var(--ink) !important;
+  border-bottom: 1px solid rgba(201,160,106,.28);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+}
+.nav{
+  max-width:var(--max); margin:0 auto; padding:0 36px;
+  display:grid; grid-template-columns: auto 1fr auto;
+  align-items:center; color:var(--cream-text);
+  height: 72px; gap: 40px;
+}
+.logo{display:flex; flex-direction:column; line-height:1; flex-shrink:0;}
+.logo .en{font-family:'Fraunces', serif; font-weight:600; font-size:1.35rem; letter-spacing:.08em; color:var(--cream-text);}
+.logo .te-sub{font-size:.62rem; color:var(--brass-light); margin-top:4px; letter-spacing:.14em; text-transform:uppercase;}
+.navlinks{display:flex; gap:0; font-size:.8rem; letter-spacing:.04em; justify-content:center; align-items:center;}
+.navlinks > a, .navlinks > .nav-dropdown > .nav-drop-trigger {
+  position:relative; padding:6px 18px; opacity:.82;
+  transition:opacity 0.2s; display:flex; align-items:center; gap:5px; white-space:nowrap;
+}
+.navlinks > a:hover, .navlinks > .nav-dropdown:hover > .nav-drop-trigger {opacity:1;}
+.navlinks > a::after, .navlinks > .nav-dropdown > .nav-drop-trigger::after{
+  content:""; position:absolute; left:18px; bottom:0;
+  width:0; height:1px; background:var(--brass-light); transition:width .25s;
+}
+.navlinks > a:hover::after, .navlinks > .nav-dropdown:hover > .nav-drop-trigger::after{width:calc(100% - 36px);}
+.nav-dropdown { position:relative; }
+.nav-drop-trigger {
+  cursor:pointer; background:none; border:none; color:var(--cream-text);
+  font-family:'Inter', sans-serif; font-size:.8rem; letter-spacing:.04em;
+}
+.nav-drop-arrow {
+  display:inline-block; font-size:0.55rem; opacity:0.65;
+  transition:transform 0.25s; margin-left:2px; margin-top:1px;
+}
+.nav-dropdown:hover .nav-drop-arrow { transform:rotate(180deg); }
+.nav-drop-menu {
+  position:absolute; top:calc(100% + 16px); left:50%;
+  transform:translateX(-50%) translateY(-8px);
+  background:rgba(23,19,15,0.97); backdrop-filter:blur(20px);
+  border:1px solid rgba(201,160,106,.2); border-top:2px solid var(--brass-light);
+  padding:10px 0; min-width:190px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  box-shadow:0 24px 48px rgba(0,0,0,0.35);
+}
+.nav-dropdown:hover .nav-drop-menu {
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+.nav-drop-menu a {
+  display:flex; align-items:center; gap:12px; padding:12px 22px;
+  font-size:.8rem; letter-spacing:.04em; color:rgba(244,236,221,0.8);
+  transition:color 0.2s, background 0.2s;
+}
+.nav-drop-menu a:hover { color:var(--cream-text); background:rgba(201,160,106,0.08); }
+.nav-drop-menu a .drop-badge {
+  margin-left:auto; font-family:'JetBrains Mono', monospace;
+  font-size:0.58rem; letter-spacing:0.08em; color:var(--brass-light);
+  border:1px solid rgba(201,160,106,0.3); padding:1px 6px; text-transform:uppercase;
+}
+.nav-drop-divider { height:1px; background:rgba(201,160,106,0.12); margin:6px 0; }
+.nav-cta{display:flex; align-items:center; gap:14px; flex-shrink:0;}
+.lang-switcher{
+  display:flex; align-items:center; gap:2px; font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+  border:1px solid rgba(201,160,106,0.22); padding:2px; background:rgba(23,19,15,0.4);
+}
+.lang-btn{
+  background:none; border:none; color:var(--cream-text); padding:4px 9px;
+  cursor:pointer; opacity:0.6; transition:all 0.2s; font-weight:500;
+}
+.lang-btn:hover{opacity:0.9;}
+.lang-btn.active{background:var(--brass-light); color:var(--ink); opacity:1; font-weight:600;}
+.ig-icon-link {
+  display:flex; align-items:center; justify-content:center; width:34px; height:34px;
+  border:1px solid rgba(201,160,106,0.28); color:var(--cream-text); opacity:0.75;
+  transition:opacity 0.2s, border-color 0.2s, background 0.2s;
+}
+.ig-icon-link:hover { opacity:1; border-color:var(--brass-light); background:rgba(201,160,106,0.08); }
+.ig-icon-link svg { width:16px; height:16px; fill:currentColor; }
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 22px; border:1px solid var(--brass-light);
+  font-size:.76rem; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--cream-text); transition:all .25s; cursor:pointer; white-space:nowrap;
+}
+.btn:hover{background:var(--brass-light); color:var(--ink); transform:translateY(-1px); box-shadow:0 4px 14px rgba(201,160,106,0.18);}
+.btn.solid{background:var(--oxblood); border-color:var(--oxblood);}
+.btn.solid:hover{background:var(--oxblood-deep); border-color:var(--oxblood-deep); color:var(--cream-text);}
+.btn.dark{border-color:var(--ink); color:var(--ink);}
+.btn.dark:hover{background:var(--ink); color:var(--cream-text);}
+.menu-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:450; flex-shrink:0;}
+.menu-toggle span{width:22px; height:1.5px; background:var(--cream-text); transition:all 0.3s ease; display:block;}
+.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(4px, 4px);}
+.menu-toggle.active span:nth-child(2){opacity:0;}
+.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(4px, -4px);}
+@media(max-width:1020px){
+  .nav { grid-template-columns: auto auto auto; height:64px; gap:20px; padding:0 24px; }
+  .navlinks {
+    display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
+    background:rgba(17,13,10,0.99); backdrop-filter:blur(24px);
+    flex-direction:column; gap:0; overflow-y:auto;
+    padding:24px 0 60px; align-items:stretch;
+    border-top:1px solid rgba(201,160,106,.15);
+  }
+  .navlinks.mobile-active { display:flex; }
+  .navlinks > a, .navlinks > .nav-dropdown > .nav-drop-trigger {
+    padding:16px 36px; opacity:1; font-size:1rem; letter-spacing:.04em;
+    border-bottom:1px solid rgba(201,160,106,.08); justify-content:flex-start;
+  }
+  .navlinks > a::after, .navlinks > .nav-dropdown > .nav-drop-trigger::after { display:none; }
+  .nav-drop-menu {
+    position:static; transform:none; opacity:1; visibility:visible; pointer-events:auto;
+    background:rgba(255,255,255,0.03); border:none;
+    border-left:3px solid var(--brass-light);
+    margin-left:36px; box-shadow:none; min-width:auto; transition:none; padding:4px 0 8px;
+  }
+  .nav-dropdown:hover .nav-drop-menu { transform:none; }
+  .nav-drop-menu a { padding:10px 20px; font-size:.88rem; }
+  .nav-drop-arrow { display:none; }
+  .menu-toggle { display:flex; }
+}
+@media(max-width:560px){
+  .nav { padding:0 18px; }
+  .btn span.txt { display:none; }
+  .nav-cta { gap:8px; }
+  .btn { padding:9px 14px; }
+}
+header.scrolled {
+  background: var(--ink) !important;
+  border-bottom: 1px solid rgba(201,160,106,.24);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body>
+
+<div id="tape">
+  <svg viewBox="0 0 26 500" preserveAspectRatio="none">
+    <rect x="9" y="0" width="8" height="500" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
+    <g id="ticks" stroke="var(--ink)" stroke-width="1"></g>
+    <circle id="tapeDot" class="tape-marker" cx="13" cy="0" r="5" fill="var(--oxblood)"/>
+  </svg>
+</div>
+
+<header>
+  <div class="nav">
+    <!-- LEFT: Logo -->
+    <a class="logo" href="index.html">
+      <span class="en">ROKKSTAR</span>
+      <span class="te-sub lang-en">MENSWEAR &amp; KIDSWEAR</span>
+      <span class="te-sub lang-te">మెన్స్వేర్ &amp; కిడ్స్వేర్</span>
+    </a>
+
+    <!-- CENTER: Nav links + Collections dropdown -->
+    <div class="menu-toggle" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="navlinks" role="navigation">
+      <a href="index.html"><span class="lang-en">Home</span><span class="lang-te">హోమ్</span></a>
+      <a href="about.html"><span class="lang-en">About</span><span class="lang-te">కథ</span></a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-trigger">
+          <span class="lang-en">Collections</span><span class="lang-te">కలెక్షన్స్</span>
+          <span class="nav-drop-arrow">&#9660;</span>
+        </button>
+        <div class="nav-drop-menu">
+          <a href="menswear.html">
+            <span class="lang-en">Menswear</span><span class="lang-te">మెన్స్వేర్</span>
+          </a>
+          <a href="kidswear.html">
+            <span class="lang-en">Kidswear</span><span class="lang-te">కిడ్స్వేర్</span>
+          </a>
+          <div class="nav-drop-divider"></div>
+          <a href="new-arrivals.html">
+            <span class="lang-en">New Arrivals</span><span class="lang-te">కొత్త వస్తువులు</span>
+            <span class="drop-badge lang-en">New</span>
+          </a>
+        </div>
+      </div>
+      <a href="lookbook.html"><span class="lang-en">Lookbook</span><span class="lang-te">లుక్బుక్</span></a>
+      <a href="fabric.html"><span class="lang-en">Fabric</span><span class="lang-te">క్వాలిటీ</span></a>
+      <a href="store.html"><span class="lang-en">Store</span><span class="lang-te">స్టోర్</span></a>
+      <a href="reviews.html"><span class="lang-en">Reviews</span><span class="lang-te">రివ్యూస్</span></a>
+      <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-te">సంప్రదించండి</span></a>
+    </nav>
+
+    <!-- RIGHT: Language + IG icon + Call CTA -->
+    <div class="nav-cta">
+      <div class="lang-switcher">
+        <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button id="btn-te" class="lang-btn" onclick="setLanguage('te')">తె</button>
+      </div>
+      <a class="ig-icon-link" href="https://www.instagram.com/rokkstar_menswear_kidswear/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="btn solid" href="tel:9666896418">
+        <span class="txt">
+          <span class="lang-en">Call Us</span>
+          <span class="lang-te">కాల్</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION 1 — OPENING STATEMENT -->
+<section class="about-hero">
+  <div class="wrap" style="width: 100%;">
+    <div class="reveal">
+      <div class="about-hero-sub">
+        <span class="lang-en">Our Story</span><span class="lang-te">మా కథ</span>
+      </div>
+      <h1 class="about-hero-title">
+        <span class="lang-en">From the streets of Gandhinagar... <br>a style for every generation.</span>
+        <span class="lang-te">గాంధీనగర్ వీధుల నుండి... <br>ప్రతి తరానికి ఒక స్టైల్.</span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — THE 3-ACT JOURNEY -->
+
+<!-- ACT I -->
+<section id="act-1" class="timeline-act">
+  <div class="wrap timeline-grid">
+    <div class="reveal">
+      <div class="act-header">
+        <span class="lang-en">Act I — Old Fashion (Roots)</span>
+        <span class="lang-te">అంకం I — ఓల్డ్ ఫ్యాషన్ (మూలాలు)</span>
+      </div>
+      <h2 class="act-title">
+        <span class="lang-en">Stitched with Honesty &amp; Tradition.</span>
+        <span class="lang-te">నిజాయితీ మరియు సాంప్రదాయ కుట్లు.</span>
+      </h2>
+      <p class="act-copy">
+        <span class="lang-en">It started with tradition. Honest fabric, precise stitching, tailoring that respected the craft before it chased the trend. That's our root in Gandhinagar, Vijayawada. We value the physical feeling of cloth and custom cuts.</span>
+        <span class="lang-te">మొదలైంది సంప్రదాయంతో. నాణ్యమైన ఫ్యాబ్రిక్, ఖచ్చితమైన కుట్టు, నిజాయితీ గల టైలరింగ్ — ఇవే గాంధీనగర్లో మా వేర్లు. ఫ్యాషన్ కంటే ముందు, మాకు క్రాఫ్ట్ మీద గౌరవం ఉంది. బట్ట యొక్క స్పర్శకు, ఆల్టరేషన్స్ ఫిట్టింగ్స్ కి మేము విలువనిస్తాము.</span>
+      </p>
+    </div>
+    <div class="reveal act-image-box">
+      <div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT II -->
+<section id="act-2" class="timeline-act">
+  <div class="wrap timeline-grid reverse">
+    <div class="reveal act-image-box">
+      <div></div>
+    </div>
+    <div class="reveal">
+      <div class="act-header">
+        <span class="lang-en">Act II — Gen-Z Fashion (Now)</span>
+        <span class="lang-te">అంకం II — జెన్-జి ఫ్యాషన్ (ప్రస్తుతం)</span>
+      </div>
+      <h2 class="act-title">
+        <span class="lang-en">Oversized Fits &amp; Street Energy.</span>
+        <span class="lang-te">ఓవర్సైజ్డ్ ఫిట్స్ &amp; స్ట్రీట్ ఎనర్జీ.</span>
+      </h2>
+      <p class="act-copy">
+        <span class="lang-en">Now the times have changed. Our new generation redefines style — oversized fits, bold prints, street energy. We don't follow trends. We set them. For children and teens who want to express their own voices.</span>
+        <span class="lang-te">ఇప్పుడు కాలం మారింది. మా తర్వాతి తరం స్టైల్ని రీడిఫైన్ చేస్తోంది — ఓవర్సైజ్డ్ ఫిట్స్, బోల్డ్ ప్రింట్స్, స్ట్రీట్ ఎనర్జీ. మేము ట్రెండ్ని ఫాలో అవ్వం, మేమే ట్రెండ్ సెట్ చేస్తాం. తమదైన శైలిని కోరుకునే పిల్లలు, యువత కోసం.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ACT III -->
+<section id="act-3" class="timeline-act">
+  <div class="wrap timeline-grid">
+    <div class="reveal">
+      <div class="act-header">
+        <span class="lang-en">Act III — Vintage Revival (Timeless)</span>
+        <span class="lang-te">అంకం III — వింటేజ్ రివైవల్ (శాశ్వతం)</span>
+      </div>
+      <h2 class="act-title">
+        <span class="lang-en">Throwbacks Reborn for the Star in You.</span>
+        <span class="lang-te">రెట్రో కలయికతో సరికొత్త డిజైన్లు.</span>
+      </h2>
+      <p class="act-copy">
+        <span class="lang-en">But we never forget our roots. We bring old style back with new eyes — vintage cuts, retro prints, timeless classics reborn in a modern fit. When old meets new, that's true Rokkstar style. A blend of classic comfort and contemporary details.</span>
+        <span class="lang-te">కానీ మేము ఎప్పుడూ మా వేర్లని మర్చిపోం. పాత స్టైల్ని కొత్త కళ్ళతో చూస్తాం — విన్టేజ్ కట్స్, రెట్రో ప్రింట్స్, ఎప్పుడూ పోని క్లాసిక్ లుక్స్, కొత్త ఫిట్లో. పాతది కొత్తది కలిస్తే, అదే అసలైన రాక్స్టార్ స్టైల్.</span>
+      </p>
+    </div>
+    <div class="reveal act-image-box">
+      <div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE RECAP STRIP -->
+<div class="journey-footer">
+  <div class="wrap journey-footer-text">
+    <span class="lang-en">"From old fashion, through Gen-Z fashion, to vintage — every story lives in our shop."</span>
+    <span class="lang-te">"పాత ఫ్యాషన్ నుండి, జెన్-జి ఫ్యాషన్ ద్వారా, విన్టేజ్ వరకు — ప్రతి స్టోరీ మా షాప్లో ఉంది."</span>
+  </div>
+</div>
+
+<!-- SECTION 3 — WHY ROKKSTAR (Philosophy) -->
+<section id="philosophy" style="background:var(--paper);">
+  <div class="wrap philosophy-grid reveal">
+    <div>
+      <div class="eyebrow">
+        <span>
+          <span class="lang-en">Our Philosophy</span><span class="lang-te">మా సిద్ధాంతం</span>
+        </span>
+      </div>
+      <h2 class="act-title">
+        <span class="lang-en">Why Rokkstar?</span>
+        <span class="lang-te">ఎందుకు రాక్స్టార్?</span>
+      </h2>
+      <p class="act-copy" style="font-size: 1.05rem;">
+        <span class="lang-en">Because there's a star in everyone. Whatever your age, whatever your style — menswear or kidswear — we give you the right fit, the right fabric, the right style. This isn't just clothing. It's your identity.</span>
+        <span class="lang-te">ఎందుకంటే ప్రతి మనిషిలో ఒక స్టార్ ఉంటుంది. మీ వయసు ఏదైనా, మీ స్టైల్ ఏదైనా — మెన్స్వేర్ అయినా, కిడ్స్వేర్ అయినా — మేము మీకు సరైన ఫిట్, సరైన ఫ్యాబ్రిక్, సరైన స్టైల్ ఇస్తాం. ఇది కేవలం బట్టలు కాదు, ఇది మీ గుర్తింపు.</span>
+      </p>
+    </div>
+    <div class="philosophy-image"></div>
+  </div>
+</section>
+
+<!-- SECTION 4 — FOUNDER/SHOP PRIDE LINE -->
+<section id="shop-pride">
+  <div class="wrap reveal">
+    <h2 class="pride-text">
+      <span class="lang-en">"In Gandhinagar, Vijayawada, we take pride in dressing your family — one generation at a time."</span>
+      <span class="lang-te">"గాంధీనగర్, విజయవాడలో మేము మీ కుటుంబం కోసం బట్టలు ఎంచుకోవడం లో గర్వపడతాం."</span>
+    </h2>
+    <a class="btn solid" href="menswear.html">
+      <span class="lang-en">Explore Our Collection</span>
+      <span class="lang-te">మా కలెక్షన్ చూడండి</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-row">
+    <span>
+      <span class="lang-en">© 2026 Rokkstar Menswear &amp; Kidswear — Gandhinagar, Vijayawada</span>
+      <span class="lang-te">© 2026 రొక్స్టార్ మెన్స్వేర్ &amp; కిడ్స్వేర్ — గాంధీనగర్, విజయవాడ</span>
+    </span>
+    <div class="foot-links">
+      <a href="index.html"><span class="lang-en">Home</span><span class="lang-te">హోమ్</span></a>
+      <a href="https://www.instagram.com/rokkstar_menswear_kidswear/" target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:9666896418">96668 96418</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language settings toggle
+function setLanguage(lang) {
+  if (lang === 'te') {
+    document.body.classList.remove('lang-en');
+    document.body.classList.add('lang-te');
+    document.getElementById('btn-en').classList.remove('active');
+    document.getElementById('btn-te').classList.add('active');
+    localStorage.setItem('rokkstar_lang', 'te');
+  } else {
+    document.body.classList.remove('lang-te');
+    document.body.classList.add('lang-en');
+    document.getElementById('btn-te').classList.remove('active');
+    document.getElementById('btn-en').classList.add('active');
+    localStorage.setItem('rokkstar_lang', 'en');
+  }
+}
+
+// On Page Load setup
+window.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('rokkstar_lang') || 'en';
+  setLanguage(savedLang);
+  
+  // Header scroll solid background toggle
+  const header = document.querySelector('header');
+  function checkScroll() {
+    if (window.scrollY > 80) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', checkScroll, {passive:true});
+  checkScroll();
+});
+
+// reveal on scroll
+const els = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+els.forEach(el=>io.observe(el));
+
+// measuring tape ticks + scroll marker
+const ticksG = document.getElementById('ticks');
+const tapeHeight = 500;
+for(let i=0;i<=50;i++){
+  const y = i*10;
+  const long = i%5===0;
+  const tick = document.createElementNS('http://www.w3.org/2000/svg','line');
+  tick.setAttribute('x1', long ? 9 : 11);
+  tick.setAttribute('x2', 17);
+  tick.setAttribute('y1', y);
+  tick.setAttribute('y2', y);
+  tick.setAttribute('stroke-width', long ? 1 : .6);
+  ticksG.appendChild(tick);
+}
+const dot = document.getElementById('tapeDot');
+function updateTape(){
+  const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  const y = Math.min(Math.max(scrollPct,0),1) * tapeHeight;
+  dot.setAttribute('cy', y);
+}
+window.addEventListener('scroll', updateTape, {passive:true});
+updateTape();
+function toggleMobileMenu() {
+  const navlinks = document.querySelector('.navlinks');
+  const btn = document.getElementById('mobileMenuBtn');
+  navlinks.classList.toggle('mobile-active');
+  btn.classList.toggle('active');
+}
+</script>
+</body>
+</html>

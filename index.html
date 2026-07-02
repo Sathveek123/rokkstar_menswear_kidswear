@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROKKSTAR — Premium Menswear &amp; Kidswear · Gandhinagar, Vijayawada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Telugu:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#17130f;
+  --paper:#ece3d2;
+  --paper-2:#e2d6bd;
+  --oxblood:#6d2430;
+  --oxblood-deep:#4f1620;
+  --brass:#a9814a;
+  --brass-light:#c9a06a;
+  --pine:#2b3b32;
+  --line:#c7b696;
+  --cream-text:#f4ecdd;
+  --max:1180px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter', sans-serif;
+  font-weight:400;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Language styling helpers */
+body.lang-te {
+  font-family: 'Noto Sans Telugu', 'Inter', sans-serif;
+}
+body.lang-te h1, body.lang-te h2, body.lang-te h3, body.lang-te .disp {
+  font-family: 'Noto Serif Telugu', 'Fraunces', serif;
+}
+body.lang-en .lang-te { display: none !important; }
+body.lang-te .lang-en { display: none !important; }
+
+.te{font-family:'Noto Sans Telugu', sans-serif;}
+h1,h2,h3,.disp{font-family:'Fraunces', serif;}
+.disp-te{font-family:'Noto Serif Telugu', serif;}
+.mono{font-family:'JetBrains Mono', monospace; letter-spacing:.04em;}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+@media(max-width:720px){.wrap{padding:0 20px;}}
+
+/* ===== Cinematic Splash Screen / Loader ===== */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #0b0d0e;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: 
+    radial-gradient(rgba(23,19,15,0.75), rgba(11,13,14,0.98)),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 2px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 2px);
+  background-size: auto, 3px 3px, 3px 3px;
+}
+#skip-splash {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(244,236,221,0.08);
+  border: 1px solid rgba(244,236,221,0.25);
+  color: var(--cream-text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  padding: 8px 16px;
+  cursor: pointer;
+  z-index: 1020;
+  letter-spacing: 0.05em;
+  transition: all 0.25s;
+}
+#skip-splash:hover {
+  background: var(--brass-light);
+  color: var(--ink);
+  border-color: var(--brass-light);
+}
+.splash-stage {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tape-half {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 1010;
+  display: flex;
+  align-items: center;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.tape-half.top {
+  top: calc(50% - 9px);
+  transform-origin: center bottom;
+}
+.tape-half.bottom {
+  top: calc(50% - 9px);
+  transform-origin: center top;
+}
+.tape-ruler {
+  height: 18px;
+  width: 100%;
+  background-color: var(--paper-2);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background-image: 
+    repeating-linear-gradient(90deg, var(--ink) 0px, var(--ink) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(90deg, var(--ink) 0px, var(--ink) 1.5px, transparent 1.5px, transparent 50px);
+  background-size: 10px 7px, 50px 13px;
+  background-repeat: repeat-x;
+  background-position: top left, top left;
+}
+.tape-half.top.parted {
+  transform: translateY(-90px);
+}
+.tape-half.bottom.parted {
+  transform: translateY(90px);
+}
+.cut-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  top: calc(50% - 1px);
+  z-index: 1008;
+}
+.scissor-container {
+  position: absolute;
+  left: 0;
+  top: calc(50% - 24px);
+  width: 48px;
+  height: 48px;
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.scissor-container.active {
+  opacity: 1;
+  animation: travel-scissor 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes travel-scissor {
+  0% { left: 0%; transform: translateX(-100%); }
+  100% { left: 100%; transform: translateX(0); }
+}
+.scissor-svg {
+  width: 100%;
+  height: 100%;
+}
+@keyframes snip-top {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-20deg); }
+}
+@keyframes snip-bottom {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(20deg); }
+}
+.scissor-container.active #scissor-blade-top {
+  animation: snip-top 0.22s ease-in-out infinite;
+}
+.scissor-container.active #scissor-blade-bottom {
+  animation: snip-bottom 0.22s ease-in-out infinite;
+}
+
+.reveal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1002;
+  width: 90%;
+  max-width: 720px;
+  text-align: center;
+  pointer-events: none;
+}
+.stitch-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.stitch-text {
+  fill: transparent;
+  stroke: var(--brass-light);
+  stroke-width: 1.5;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.stitch-text.telugu {
+  font-family: 'Noto Serif Telugu', serif;
+  font-size: 3.6rem;
+  letter-spacing: 0.04em;
+}
+.stitch-text.english {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.18em;
+}
+.stitch-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  fill: transparent;
+  stroke: rgba(244, 236, 221, 0.45);
+  stroke-width: 0.6;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  text-transform: uppercase;
+}
+@keyframes draw-stitch {
+  0% { stroke-dashoffset: 800; fill: transparent; }
+  75% { stroke-dashoffset: 0; fill: transparent; }
+  100% { stroke-dashoffset: 0; fill: var(--cream-text); }
+}
+@keyframes draw-tagline {
+  0% { stroke-dashoffset: 400; fill: transparent; }
+  75% { stroke-dashoffset: 0; fill: transparent; }
+  100% { stroke-dashoffset: 0; fill: var(--brass-light); }
+}
+
+/* ===== Measuring tape scroll signature ===== */
+#tape{
+  position:fixed; right:14px; top:50%; transform:translateY(-50%);
+  width:26px; height:60vh; max-height:520px; z-index:500;
+  display:flex; align-items:center; justify-content:center;
+  pointer-events:none;
+}
+#tape svg{width:100%; height:100%; overflow:visible;}
+.tape-marker{transition:transform .08s linear;}
+@media(max-width:900px){#tape{display:none;}}
+
+/* ===== Header & Navigation — 3-zone premium redesign ===== */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:400;
+  background:rgba(23,19,15,.82);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,160,106,.14);
+  transition: background-color 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+header.scrolled {
+  background: var(--ink) !important;
+  border-bottom: 1px solid rgba(201,160,106,.28);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+}
+.nav{
+  max-width:var(--max); margin:0 auto; padding:0 36px;
+  display:grid;
+  grid-template-columns: auto 1fr auto;
+  align-items:center;
+  color:var(--cream-text);
+  height: 72px;
+  gap: 40px;
+}
+
+/* ─── LEFT: Logo ─── */
+.logo{display:flex; flex-direction:column; line-height:1; flex-shrink:0;}
+.logo .en{font-family:'Fraunces', serif; font-weight:600; font-size:1.35rem; letter-spacing:.08em; color:var(--cream-text);}
+.logo .te-sub{font-size:.62rem; color:var(--brass-light); margin-top:4px; letter-spacing:.14em; text-transform:uppercase;}
+
+/* ─── CENTER: Nav links ─── */
+.navlinks{
+  display:flex; gap:0; font-size:.8rem; letter-spacing:.04em;
+  justify-content: center; align-items: center;
+}
+.navlinks > a, .navlinks > .nav-dropdown > .nav-drop-trigger {
+  position:relative; padding:6px 18px; opacity:.82;
+  transition: opacity 0.2s;
+  display: flex; align-items: center; gap: 5px;
+  white-space: nowrap;
+}
+.navlinks > a:hover, .navlinks > .nav-dropdown:hover > .nav-drop-trigger {opacity:1;}
+.navlinks > a::after,
+.navlinks > .nav-dropdown > .nav-drop-trigger::after{
+  content:""; position:absolute; left:18px; bottom:0;
+  width:0; height:1px; background:var(--brass-light); transition:width .25s;
+}
+.navlinks > a:hover::after,
+.navlinks > .nav-dropdown:hover > .nav-drop-trigger::after{width:calc(100% - 36px);}
+
+/* Collections dropdown */
+.nav-dropdown { position: relative; }
+.nav-drop-trigger {
+  cursor: pointer; background:none; border:none;
+  color: var(--cream-text); font-family: 'Inter', sans-serif;
+  font-size: .8rem; letter-spacing: .04em;
+}
+.nav-drop-arrow {
+  display: inline-block; font-size: 0.55rem; opacity: 0.65;
+  transition: transform 0.25s;
+  margin-left: 2px; margin-top: 1px;
+}
+.nav-dropdown:hover .nav-drop-arrow { transform: rotate(180deg); }
+.nav-drop-menu {
+  position: absolute; top: calc(100% + 16px); left: 50%;
+  transform: translateX(-50%);
+  background: rgba(23,19,15,0.97);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,160,106,.2);
+  border-top: 2px solid var(--brass-light);
+  padding: 10px 0;
+  min-width: 190px;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateX(-50%) translateY(-8px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+}
+.nav-dropdown:hover .nav-drop-menu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-drop-menu a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 22px;
+  font-size: .8rem; letter-spacing: .04em;
+  color: rgba(244,236,221,0.8);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-drop-menu a:hover {
+  color: var(--cream-text);
+  background: rgba(201,160,106,0.08);
+}
+.nav-drop-menu a .drop-badge {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.08em;
+  color: var(--brass-light);
+  border: 1px solid rgba(201,160,106,0.3);
+  padding: 1px 6px;
+  text-transform: uppercase;
+}
+.nav-drop-divider {
+  height: 1px; background: rgba(201,160,106,0.12);
+  margin: 6px 0;
+}
+
+/* ─── RIGHT: CTA zone ─── */
+.nav-cta{display:flex; align-items:center; gap:14px; flex-shrink:0;}
+
+/* Language switcher */
+.lang-switcher{
+  display:flex; align-items:center; gap:2px;
+  font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+  border:1px solid rgba(201,160,106,0.22);
+  padding:2px; background:rgba(23,19,15,0.4);
+}
+.lang-btn{
+  background:none; border:none; color:var(--cream-text);
+  padding:4px 9px; cursor:pointer; opacity:0.6; transition:all 0.2s; font-weight:500;
+}
+.lang-btn:hover{opacity:0.9;}
+.lang-btn.active{background:var(--brass-light); color:var(--ink); opacity:1; font-weight:600;}
+
+/* Instagram icon-only link */
+.ig-icon-link {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(201,160,106,0.28);
+  border-radius: 0;
+  color: var(--cream-text);
+  opacity: 0.75;
+  transition: opacity 0.2s, border-color 0.2s, background 0.2s;
+}
+.ig-icon-link:hover {
+  opacity: 1;
+  border-color: var(--brass-light);
+  background: rgba(201,160,106,0.08);
+}
+.ig-icon-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Call button */
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 22px; border:1px solid var(--brass-light);
+  font-size:.76rem; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--cream-text); transition:all .25s; cursor:pointer; white-space:nowrap;
+}
+.btn:hover{background:var(--brass-light); color:var(--ink); transform:translateY(-1px); box-shadow:0 4px 14px rgba(201,160,106,0.18);}
+.btn.solid{background:var(--oxblood); border-color:var(--oxblood);}
+.btn.solid:hover{background:var(--oxblood-deep); border-color:var(--oxblood-deep); color:var(--cream-text);}
+.btn.dark{border-color:var(--ink); color:var(--ink);}
+.btn.dark:hover{background:var(--ink); color:var(--cream-text);}
+
+/* Hamburger toggle */
+.menu-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:450; flex-shrink:0;}
+.menu-toggle span{width:22px; height:1.5px; background:var(--cream-text); transition:all 0.3s ease; display:block;}
+.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(4px, 4px);}
+.menu-toggle.active span:nth-child(2){opacity:0;}
+.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(4px, -4px);}
+
+/* ─── MOBILE: Collapse to hamburger ─── */
+@media(max-width:1020px){
+  .nav { grid-template-columns: auto auto auto; height: 64px; gap: 20px; padding: 0 24px; }
+  .navlinks {
+    display: none;
+    position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: rgba(17,13,10,0.99);
+    backdrop-filter: blur(24px);
+    flex-direction: column; gap: 0;
+    overflow-y: auto;
+    padding: 24px 0 60px;
+    align-items: stretch;
+    border-top: 1px solid rgba(201,160,106,.15);
+  }
+  .navlinks.mobile-active { display: flex; }
+  .navlinks > a, .navlinks > .nav-dropdown > .nav-drop-trigger {
+    padding: 16px 36px; opacity: 1; font-size: 1rem; letter-spacing: .04em;
+    border-bottom: 1px solid rgba(201,160,106,.08);
+    justify-content: flex-start;
+  }
+  .navlinks > a::after, .navlinks > .nav-dropdown > .nav-drop-trigger::after { display: none; }
+  .nav-drop-menu {
+    position: static; transform: none; opacity: 1; visibility: visible;
+    pointer-events: auto; background: rgba(255,255,255,0.03);
+    border: none; border-top: none; border-left: 3px solid var(--brass-light);
+    margin-left: 36px; box-shadow: none; min-width: auto;
+    transition: none; padding: 4px 0 8px;
+  }
+  .nav-dropdown:hover .nav-drop-menu { transform: none; }
+  .nav-drop-menu a { padding: 10px 20px; font-size: .88rem; }
+  .nav-drop-arrow { display: none; }
+  .menu-toggle { display: flex; }
+}
+@media(max-width:560px){
+  .nav { padding: 0 18px; }
+  .btn span.txt { display: none; }
+  .nav-cta { gap: 8px; }
+  .btn { padding: 9px 14px; }
+}
+
+/* ===== Section Scaffolding ===== */
+section{position:relative; padding:120px 0; border-bottom:1px solid var(--line);}
+.eyebrow{
+  font-family:'JetBrains Mono', monospace; font-size:.72rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--oxblood); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+}
+.eyebrow::before{content:""; width:28px; height:1px; background:var(--oxblood);}
+
+/* ===== SECTION 1 — Hero / Splash ===== */
+#home{
+  height: 100vh;
+  min-height: 650px;
+  display:flex; 
+  align-items:flex-end;
+  background: 
+    linear-gradient(to top, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.4) 60%, rgba(13,13,13,0.1) 100%), 
+    url('https://images.unsplash.com/photo-1618886614638-80e3c103d31a?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+  padding-top:140px; 
+  padding-bottom:100px; 
+  border-bottom:1px solid var(--line);
+}
+.hero-content {
+  width: 100%;
+  color: var(--cream-text);
+  z-index: 10;
+  text-align: left;
+}
+.hero-title-mask {
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.hero-title{
+  font-size:clamp(3.5rem, 9vw, 6.8rem); 
+  font-weight:600; 
+  letter-spacing:-.01em;
+  line-height:.95;
+  text-transform: uppercase;
+  transform: translateY(100%);
+  animation: reveal-hero-text 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+.hero-title .out{-webkit-text-stroke:1.5px var(--cream-text); color:transparent;}
+@keyframes reveal-hero-text {
+  to { transform: translateY(0); }
+}
+.hero-title-te{
+  font-size:clamp(1.6rem, 3.4vw, 2.6rem);
+  color:var(--brass-light); 
+  font-weight:700;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fade-reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+.hero-sub{
+  margin-top:20px; 
+  max-width:520px; 
+  font-size:1.05rem; 
+  color:rgba(244,236,221,0.8);
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fade-reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+@keyframes fade-reveal-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-ctas{
+  display:flex; 
+  gap:16px; 
+  margin-top:34px; 
+  flex-wrap:wrap;
+  opacity: 0;
+  animation: fade-in 0.8s ease 1.5s forwards;
+}
+@keyframes fade-in {
+  to { opacity: 1; }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.65;
+  animation: scroll-bounce 2s infinite;
+  cursor: pointer;
+  color: var(--cream-text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.scroll-indicator svg {
+  fill: currentColor;
+}
+@keyframes scroll-bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 8px); }
+}
+
+/* ===== SECTION 2 — Brand Intro Strip ===== */
+#brand-intro {
+  background: var(--paper-2);
+  color: var(--ink);
+  padding: 80px 0;
+  text-align: center;
+}
+.brand-statement {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.45;
+  max-width: 820px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+.gold-divider {
+  width: 80px;
+  height: 1px;
+  background: var(--oxblood);
+  margin: 0 auto 30px;
+}
+.trust-strip-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #4a4136;
+}
+.trust-strip-horizontal span {
+  display: flex;
+  align-items: center;
+}
+.trust-strip-horizontal span:not(:last-child)::after {
+  content: "•";
+  margin-left: 20px;
+  color: var(--oxblood);
+}
+
+/* ===== SECTION 3 — Featured Collections Preview ===== */
+.lookbook-header {
+  margin-bottom: 56px;
+}
+.lookbook-title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 600;
+}
+.lookbook-subtext {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  margin-top: 6px;
+}
+.lookbook-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+@media(max-width: 800px){
+  .lookbook-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.col-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  background: var(--ink);
+}
+.col-card .img-wrap {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.col-card:hover .img-wrap {
+  transform: scale(1.05);
+}
+.col-card .card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(23,19,15,0.92) 0%, rgba(23,19,15,0.2) 65%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  z-index: 2;
+}
+.col-card .card-label {
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem;
+  color: var(--cream-text);
+  transform: translateY(14px);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  font-weight: 500;
+  line-height: 1.25;
+}
+.col-card:hover .card-label {
+  transform: translateY(0);
+}
+.col-card .card-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--brass-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.4s;
+  margin-top: 4px;
+}
+.col-card:hover .card-sub {
+  opacity: 1;
+}
+
+/* Card custom sizes for Lookbook Asymmetric spread */
+.col-card.large-1 {
+  grid-column: span 7;
+  aspect-ratio: 4/3;
+}
+.col-card.large-2 {
+  grid-column: span 5;
+  aspect-ratio: 4/5.2;
+}
+.col-card.small-1 {
+  grid-column: span 4;
+  aspect-ratio: 4/5.2;
+}
+.col-card.small-2 {
+  grid-column: span 4;
+  aspect-ratio: 4/5.2;
+}
+.col-card.small-3 {
+  grid-column: span 4;
+  aspect-ratio: 4/5.2;
+}
+
+@media(max-width: 800px) {
+  .col-card.large-1, .col-card.large-2, .col-card.small-1, .col-card.small-2, .col-card.small-3 {
+    grid-column: span 1;
+    aspect-ratio: 4/5;
+  }
+}
+
+/* Gold Corner New Badge */
+.new-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--brass);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  z-index: 5;
+  border: 1px solid var(--ink);
+}
+.explore-cta-container {
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* Image URLs */
+.col-card.ethnic-men .img-wrap { background-image: url('assets/lookbook_festive_menswear.png'); }
+.col-card.casual-men .img-wrap { background-image: url('assets/lookbook_denim_casual.png'); }
+.col-card.boys-kids .img-wrap { background-image: url('assets/lookbook_kids_boys.png'); }
+.col-card.girls-kids .img-wrap { background-image: url('assets/lookbook_kids_girls.png'); }
+.col-card.new-arrivals .img-wrap { background-image: url('assets/lookbook_kids_party.png'); }
+
+/* ===== SECTION 4 — Instagram Feed Embed ===== */
+.gallery-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:10px;}
+@media(max-width:800px){.gallery-grid{grid-template-columns:repeat(3,1fr);}}
+.gallery-item{
+  aspect-ratio:1/1; position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:10px;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s;
+  cursor: pointer;
+}
+.gallery-item:hover {
+  transform: scale(1.03);
+}
+.gallery-item span{
+  font-family:'JetBrains Mono',monospace; font-size:.62rem; color:rgba(244,236,221,.9); 
+  background:rgba(23,19,15,.7); padding:4px 8px; z-index:2;
+}
+
+/* Instagram lifestyles replace */
+.g1{background: linear-gradient(to top, rgba(23,19,15,0.7) 0%, transparent 40%), url('https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+.g2{background: linear-gradient(to top, rgba(23,19,15,0.7) 0%, transparent 40%), url('https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+.g3{background: linear-gradient(to top, rgba(23,19,15,0.7) 0%, transparent 40%), url('https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+.g4{background: linear-gradient(to top, rgba(23,19,15,0.7) 0%, transparent 40%), url('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+.g5{background: linear-gradient(to top, rgba(23,19,15,0.7) 0%, transparent 40%), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+.g6{background: linear-gradient(to top, rgba(23,19,15,0.7) 0%, transparent 40%), url('https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+
+.gallery-cta{margin-top:28px; text-align:center;}
+
+.gallery-item .overlay-ig {
+  position: absolute;
+  inset: 0;
+  background: rgba(109,36,48,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  color: var(--cream-text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.gallery-item:hover .overlay-ig {
+  opacity: 1;
+}
+.gallery-item .overlay-ig svg {
+  margin-bottom: 8px;
+  fill: currentColor;
+}
+
+/* ===== SECTION 5 — Testimonials slideshow ===== */
+.test-slideshow {
+  position: relative;
+  max-width: 820px;
+  margin: 40px auto 0;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.test-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+}
+.test-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+}
+.test-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  pointer-events: auto;
+}
+.test-slide .quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  line-height: 1.45;
+  color: var(--ink);
+  margin-top: 10px;
+}
+.test-slide .who {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  margin-top: 18px;
+}
+.test-arrow {
+  background: none;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+}
+.test-arrow:hover {
+  background: var(--ink);
+  color: var(--cream-text);
+}
+
+/* ===== SECTION 6 — Store Highlight split-screen ===== */
+.store-highlight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: stretch;
+}
+@media(max-width: 900px){
+  .store-highlight-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+.store-info-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.store-info-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.store-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+.store-detail-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 0.95rem;
+  color: #3a332a;
+}
+.store-detail-row svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  fill: var(--oxblood);
+}
+.store-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media(max-width: 500px){
+  .store-action-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+.store-action-buttons .btn {
+  justify-content: center;
+  font-weight: 500;
+}
+
+/* Map screen left side styling */
+.map-frame-box {
+  border: 1px solid var(--ink);
+  width: 100%;
+  min-height: 400px;
+  position: relative;
+  background: var(--paper-2);
+}
+.map-frame-box iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  border: 0;
+  filter: grayscale(.25) contrast(1.02);
+}
+
+/* ===== Fabric / quality — signature swatches ===== */
+.fabric-head{max-width:640px; margin-bottom:60px;}
+.swatch-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+@media(max-width:900px){.swatch-grid{grid-template-columns:repeat(2,1fr);}}
+.swatch{
+  border:1px dashed var(--brass);
+  padding:26px 20px 22px;
+  position:relative;
+  background:var(--paper-2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor:pointer;
+}
+.swatch:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(169, 129, 74, 0.15);
+}
+.swatch::before{
+  content:""; position:absolute; inset:6px; border:1px solid rgba(109,36,48,.35); pointer-events:none;
+}
+.swatch .patch{
+  width:100%; aspect-ratio:1/1; margin-bottom:18px; position:relative; overflow:hidden;
+  border:1px solid var(--ink);
+}
+.swatch .fname{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;}
+.swatch .fdesc{font-size:.78rem; color:#5a5142; margin-top:10px;}
+
+/* Fabric textures replacement */
+.p-cotton{background: url('assets/fabric_combed_cotton.png') no-repeat center/cover;}
+.p-linen{background: url('assets/fabric_pure_linen.png') no-repeat center/cover;}
+.p-denim{background: url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+.p-wool{background: url('https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=400&q=80') no-repeat center/cover;}
+
+/* ===== Experience / why us ===== */
+.exp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+@media(max-width:800px){.exp-grid{grid-template-columns:repeat(2,1fr);}}
+.exp-item{background:var(--paper); padding:38px 26px; transition: background-color 0.3s;}
+.exp-item:hover { background-color: var(--paper-2); }
+.exp-item .mono{color:var(--oxblood); font-size:.72rem;}
+.exp-item h3{font-size:1.15rem; margin-top:20px; font-weight:600;}
+.exp-item .te{font-size:.8rem; color:#5a5142; margin-top:8px;}
+
+/* ===== Size guide ===== */
+.size-wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+@media(max-width:900px){.size-wrap{grid-template-columns:1fr;}}
+table.sizes{width:100%; border-collapse:collapse; font-size:.85rem;}
+table.sizes caption{text-align:left; font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oxblood); margin-bottom:14px;}
+table.sizes th, table.sizes td{border:1px solid var(--line); padding:11px 10px; text-align:center;}
+table.sizes th{background:var(--paper-2); font-weight:600; font-size:.75rem; text-transform:uppercase; letter-spacing:.03em;}
+table.sizes td:first-child, table.sizes th:first-child{text-align:left; font-weight:500;}
+.size-note{margin-top:18px; font-size:.82rem; color:#5a5142;}
+
+/* ===== FAQ ===== */
+.faq-list{max-width:760px;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%; text-align:left; background:none; border:none; padding:22px 0; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:'Fraunces',serif; font-size:1.05rem; color:var(--ink); gap:20px;}
+.faq-q .plus{font-family:'JetBrains Mono',monospace; font-size:1.1rem; color:var(--oxblood); transition:transform .25s; flex-shrink:0;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+.faq-a-inner{padding:0 0 22px; font-size:.88rem; color:#3a332a; max-width:600px;}
+
+/* ===== Rating stars ===== */
+.stars{color:var(--brass); font-size:.85rem; letter-spacing:2px; margin-bottom:10px;}
+
+/* ===== Contact Form Section ===== */
+#contact{background:var(--ink); color:var(--cream-text); border-bottom:none;}
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr; gap:44px;}}
+.contact-list{margin-top:30px; display:flex; flex-direction:column; gap:22px;}
+.contact-list .row{display:flex; gap:16px; align-items:flex-start; border-bottom:1px solid rgba(244,236,221,.15); padding-bottom:18px;}
+.contact-list .k{font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--brass-light); text-transform:uppercase; min-width:90px;}
+.contact-list .v{font-size:.95rem;}
+.map-frame{border:1px solid rgba(244,236,221,.25); width:100%; height:100%; min-height:340px;}
+.map-frame iframe{width:100%; height:100%; min-height:340px; border:0; filter:grayscale(.3) contrast(1.05);}
+
+form.reach{margin-top:10px; display:flex; flex-direction:column; gap:16px;}
+form.reach input, form.reach textarea{
+  background:transparent; border:none; border-bottom:1px solid rgba(244,236,221,.3);
+  color:var(--cream-text); font-family:'Inter',sans-serif; font-size:.95rem; padding:10px 2px; outline:none;
+}
+form.reach input::placeholder, form.reach textarea::placeholder{color:rgba(244,236,221,.4);}
+form.reach input:focus, form.reach textarea:focus{border-color:var(--brass-light);}
+form.reach button{
+  margin-top:10px; align-self:flex-start; padding:14px 30px; background:var(--oxblood); color:var(--cream-text);
+  border:1px solid var(--oxblood); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:.25s;
+}
+form.reach button:hover{background:var(--brass-light); border-color:var(--brass-light); color:var(--ink);}
+
+/* ===== Back to top ===== */
+#toTop{
+  position:fixed; right:16px; bottom:24px; z-index:460;
+  width:44px; height:44px; background:var(--oxblood); color:var(--cream-text);
+  border:1px solid var(--oxblood); display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; cursor:pointer; opacity:0; pointer-events:none; transition:opacity .3s;
+}
+#toTop.show{opacity:1; pointer-events:auto;}
+@media(max-width:800px){#toTop{bottom:76px;}}
+
+footer{background:var(--ink); color:rgba(244,236,221,.6); padding:40px 0; border-top:1px solid rgba(244,236,221,.15);}
+.foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:.78rem;}
+.foot-links{display:flex; gap:22px;}
+.foot-links a:hover{color:var(--brass-light);}
+
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+:focus-visible{outline:2px solid var(--brass-light); outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .reveal{transition:none; opacity:1; transform:none;}
+}
+
+/* Header Scroll solid class */
+header.scrolled {
+  background: var(--ink) !important;
+  border-bottom: 1px solid rgba(201,160,106,.24);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* Splash Ruler wider opening */
+.tape-half.top.parted {
+  transform: translateY(-130px);
+}
+.tape-half.bottom.parted {
+  transform: translateY(130px);
+}
+
+/* Clear logo text outlines */
+.stitch-text {
+  stroke-width: 2.2;
+}
+.stitch-tagline {
+  stroke: rgba(244, 236, 221, 0.75);
+  stroke-width: 0.85;
+}
+
+/* About Split-screen layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 70px;
+  align-items: stretch;
+  padding: 100px 0;
+}
+@media(max-width: 900px){
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+.about-image-wrap {
+  position: relative;
+  border: 1px solid var(--ink);
+  aspect-ratio: 4/5;
+  width: 100%;
+}
+.about-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: sepia(0.08) contrast(1.02);
+}
+.about-image-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: var(--ink);
+  color: var(--cream-text);
+  border: 1px solid var(--brass-light);
+  padding: 8px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.about-text-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-text-column p {
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #3a332a;
+}
+
+/* Stats Row Redesign */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0 38px;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+  max-width: 600px;
+}
+.stat {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+.stat:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: var(--line);
+  opacity: 0.75;
+}
+.stat .num {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--oxblood);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.stat .num::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-color: var(--brass);
+  border-radius: 50%;
+  margin: 4px auto 0;
+}
+.stat .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.85;
+}
+@media (max-width: 600px) {
+  .stat-row {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+  }
+  .stat:not(:last-child)::after {
+    display: none;
+  }
+  .stat {
+    border-bottom: 1px solid rgba(23, 19, 15, 0.08);
+    padding-bottom: 12px;
+    width: 100%;
+  }
+  .stat:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+/* Closing Quote Block Styling */
+.founder-note {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px 30px;
+  background: var(--paper-2);
+  border-left: 3px solid var(--oxblood);
+  max-width: 600px;
+}
+.founder-mark {
+  font-family: 'Fraunces', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--oxblood);
+  line-height: 1;
+  opacity: 0.85;
+}
+.founder-note blockquote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 8px;
+  position: relative;
+  border: none;
+  padding: 0;
+}
+.founder-note .sig {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+}
+
+/* Category Grid Sections & low-opacity background weave pattern */
+.cat-section {
+  padding: 100px 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.cat-section::before, #reviews::before, #about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(23,19,15,0.035) 1px, transparent 1px);
+  background-size: 18px 18px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.cat-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 54px;
+  gap: 30px;
+}
+@media(max-width: 900px) {
+  .cat-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+.cat-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin-top: 8px;
+}
+.cat-desc {
+  max-width: 480px;
+  font-size: 0.94rem;
+  color: #5a5142;
+  line-height: 1.6;
+}
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+@media(max-width: 1024px) {
+  .card-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+@media(max-width: 600px) {
+  .card-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.cat-card {
+  position: relative;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 24px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s, border-color 0.4s;
+}
+.cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(169, 129, 74, 0.18);
+  border-color: var(--brass-light);
+}
+.cat-thumb {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.16;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s, filter 0.4s;
+  filter: grayscale(1) contrast(1.1);
+}
+.cat-card:hover .cat-thumb {
+  opacity: 0.85;
+  transform: scale(1.08);
+  filter: none;
+}
+.cat-num {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 4.8rem;
+  color: rgba(23, 19, 15, 0.05);
+  line-height: 1;
+  transition: color 0.4s;
+}
+.cat-card:hover .cat-num {
+  color: rgba(109, 36, 48, 0.12);
+}
+.cat-details {
+  z-index: 2;
+  position: relative;
+  background: linear-gradient(to top, var(--paper-2) 40%, transparent 100%);
+  width: 100%;
+  margin-top: auto;
+  padding-top: 40px;
+  transition: background 0.4s;
+}
+.cat-card:hover .cat-details {
+  background: linear-gradient(to top, rgba(23, 19, 15, 0.85) 30%, transparent 100%);
+}
+.cat-card .name {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--ink);
+  transition: color 0.4s;
+}
+.cat-card:hover .name {
+  color: var(--cream-text);
+}
+
+/* Alternate backgrounds overlay */
+#about {
+  background: var(--paper-2);
+}
+#menswear {
+  background: var(--paper);
+}
+#kidswear {
+  background: var(--paper-2);
+}
+#reviews {
+  background: var(--paper);
+}
+
+/* Chapter Divider Banner styling */
+.chapter-divider-banner {
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--cream-text);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.divider-banner-content .subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  margin-bottom: 12px;
+}
+.divider-banner-content .title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 500;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.35;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  padding: 0 20px;
+}
+
+/* Reviews Split layout */
+.reviews-split-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 70px;
+  align-items: center;
+  margin-top: 40px;
+}
+@media(max-width: 900px) {
+  .reviews-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+.reviews-image-wrap {
+  position: relative;
+  border: 1px solid var(--ink);
+  aspect-ratio: 16/10;
+  width: 100%;
+  overflow: hidden;
+}
+.reviews-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.2) sepia(0.08) contrast(1.02);
+}
+.reviews-badge-float {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--ink);
+  color: var(--cream-text);
+  border: 1px solid var(--brass-light);
+  padding: 10px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.reviews-badge-float .stars {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+.reviews-badge-float .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+}
+</style>
+</head>
+<body class="lang-en">
+
+<!-- CINEMATIC "TAILOR'S CUT" SPLASH SCREEN -->
+<div id="splash-screen">
+  <button id="skip-splash" onclick="skipSplash()">Skip / దాటవేయి</button>
+  <div class="splash-stage">
+    <!-- Tape top half -->
+    <div class="tape-half top">
+      <div class="tape-ruler"></div>
+    </div>
+    
+    <!-- Cutting center line and scissor -->
+    <div class="cut-line">
+      <div class="scissor-container">
+        <svg class="scissor-svg" viewBox="0 0 100 100">
+          <g fill="none" stroke="var(--brass-light)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Pivot point -->
+            <circle cx="36" cy="50" r="3" fill="var(--brass-light)" />
+            <!-- Upper blade loop -->
+            <circle cx="16" cy="34" r="10" />
+            <!-- Lower blade loop -->
+            <circle cx="16" cy="66" r="10" />
+            <!-- Blade upper (rotates relative to joint) -->
+            <path id="scissor-blade-top" d="M 23 42 L 78 50" style="transform-origin: 36px 50px;" />
+            <!-- Blade lower (rotates relative to joint) -->
+            <path id="scissor-blade-bottom" d="M 23 58 L 78 50" style="transform-origin: 36px 50px;" />
+          </g>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Inside gap: Logo and tags stitch draw -->
+    <div class="reveal-content">
+      <svg class="stitch-svg" viewBox="0 0 800 240">
+        <!-- Telugu stitch drawing wordmark -->
+        <text x="50%" y="38%" text-anchor="middle" class="stitch-text telugu">రాక్స్టార్</text>
+        <!-- English stitch drawing wordmark -->
+        <text x="50%" y="74%" text-anchor="middle" class="stitch-text english">ROKKSTAR</text>
+        <!-- Tagline drawing -->
+        <text x="50%" y="90%" text-anchor="middle" class="stitch-tagline">MENSWEAR • KIDSWEAR • రొక్స్టార్</text>
+      </svg>
+    </div>
+    
+    <!-- Tape bottom half -->
+    <div class="tape-half bottom">
+      <div class="tape-ruler"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tape">
+  <svg viewBox="0 0 26 500" preserveAspectRatio="none">
+    <rect x="9" y="0" width="8" height="500" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
+    <g id="ticks" stroke="var(--ink)" stroke-width="1"></g>
+    <circle id="tapeDot" class="tape-marker" cx="13" cy="0" r="5" fill="var(--oxblood)"/>
+  </svg>
+</div>
+
+<header>
+  <div class="nav">
+    <!-- LEFT: Logo -->
+    <a class="logo" href="index.html">
+      <span class="en">ROKKSTAR</span>
+      <span class="te-sub lang-en">MENSWEAR &amp; KIDSWEAR</span>
+      <span class="te-sub lang-te">మెన్స్వేర్ &amp; కిడ్స్వేర్</span>
+    </a>
+
+    <!-- CENTER: Nav links + Collections dropdown -->
+    <div class="menu-toggle" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="navlinks" role="navigation">
+      <a href="index.html"><span class="lang-en">Home</span><span class="lang-te">హోమ్</span></a>
+      <a href="about.html"><span class="lang-en">About</span><span class="lang-te">కథ</span></a>
+      
+      <!-- Collections dropdown -->
+      <div class="nav-dropdown">
+        <button class="nav-drop-trigger">
+          <span class="lang-en">Collections</span><span class="lang-te">కలెక్షన్స్</span>
+          <span class="nav-drop-arrow">▾</span>
+        </button>
+        <div class="nav-drop-menu">
+          <a href="menswear.html">
+            <span class="lang-en">Menswear</span><span class="lang-te">మెన్స్వేర్</span>
+          </a>
+          <a href="kidswear.html">
+            <span class="lang-en">Kidswear</span><span class="lang-te">కిడ్స్వేర్</span>
+          </a>
+          <div class="nav-drop-divider"></div>
+          <a href="new-arrivals.html">
+            <span class="lang-en">New Arrivals</span><span class="lang-te">కొత్త వస్తువులు</span>
+            <span class="drop-badge lang-en">New</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="lookbook.html"><span class="lang-en">Lookbook</span><span class="lang-te">లుక్బుక్</span></a>
+      <a href="fabric.html"><span class="lang-en">Fabric</span><span class="lang-te">క్వాలిటీ</span></a>
+      <a href="store.html"><span class="lang-en">Store</span><span class="lang-te">స్టోర్</span></a>
+      <a href="reviews.html"><span class="lang-en">Reviews</span><span class="lang-te">రివ్యూస్</span></a>
+      <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-te">సంప్రదించండి</span></a>
+    </nav>
+
+    <!-- RIGHT: Language + IG icon + Call CTA -->
+    <div class="nav-cta">
+      <div class="lang-switcher">
+        <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button id="btn-te" class="lang-btn" onclick="setLanguage('te')">తె</button>
+      </div>
+      <a class="ig-icon-link" href="https://www.instagram.com/rokkstar_menswear_kidswear/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="btn solid" href="tel:9666896418">
+        <span class="txt">
+          <span class="lang-en">Call Us</span>
+          <span class="lang-te">కాల్</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION 1 — HERO / SPLASH -->
+<section id="home">
+  <div class="wrap hero-content">
+    <div class="hero-title-mask">
+      <h1 class="hero-title">ROKK<span class="out">STAR</span></h1>
+    </div>
+    <div class="hero-title-te disp-te">
+      <span class="lang-en">Your Fashion Destination in Gandhinagar, Vijayawada</span>
+      <span class="lang-te">గాంధీనగర్, విజయవాడలో మీ ఫ్యాషన్ గమ్యస్థానం</span>
+    </div>
+    <p class="hero-sub">
+      <span class="lang-en">Menswear • Kidswear • Style For Every Star. Tailored to fit, cut from fabric we stand behind, designed for your everyday and special moments.</span>
+      <span class="lang-te">మెన్స్వేర్ • కిడ్స్వేర్ • స్టైల్ ఫర్ ఎవ్రీ స్టార్. కచ్చితమైన ఫిట్టింగ్, నమ్మకమైన క్వాలిటీ వస్త్రాలు, మీ ప్రత్యేక సందర్భాల శైలి కోసం.</span>
+    </p>
+    <div class="hero-ctas">
+      <a class="btn solid" href="#collection">
+        <span class="lang-en">View Collection</span>
+        <span class="lang-te">కలెక్షన్ చూడండి</span>
+      </a>
+      <a class="btn dark" href="#location" style="border-color: var(--cream-text); color: var(--cream-text);">
+        <span class="lang-en">Visit Store</span>
+        <span class="lang-te">స్టోర్ సందర్శించండి</span>
+      </a>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator" onclick="document.getElementById('brand-intro').scrollIntoView({behavior:'smooth'})">
+    <span class="lang-en">Scroll</span><span class="lang-te">స్క్రోల్</span>
+    <svg width="14" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SECTION 2 — BRAND INTRO STRIP -->
+<section id="brand-intro">
+  <div class="wrap">
+    <h2 class="brand-statement">
+      <span class="lang-en">"Born on the streets of Gandhinagar. Quality is our promise, fashion is our language."</span>
+      <span class="lang-te">"గాంధీనగర్ వీధుల్లో పుట్టిన స్టైల్. నాణ్యత మా వాగ్దానం, ఫ్యాషన్ మా భాష."</span>
+    </h2>
+    <div class="gold-divider"></div>
+    <div class="trust-strip-horizontal">
+      <span><span class="lang-en">2,200+ Community</span><span class="lang-te">2,200+ కమ్యూనిటీ</span></span>
+      <span><span class="lang-en">Men &amp; Kids Lines</span><span class="lang-te">మెన్స్ &amp; కిడ్స్ వేర్</span></span>
+      <span><span class="lang-en">Vijayawada Original</span><span class="lang-te">విజయవాడ ఒరిజినల్</span></span>
+      <span><span class="lang-en">Premium Fabrics Only</span><span class="lang-te">నాణ్యమైన వస్త్రాలు</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT BRIEF -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal about-image-wrap">
+      <div class="about-image" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="about-image-badge">
+        <span class="lang-en">Est. 2020</span>
+        <span class="lang-te">స్థాపన 2020</span>
+      </div>
+    </div>
+    
+    <div class="reveal about-text-column">
+      <div class="eyebrow">
+        <span>
+          <span class="lang-en">About the store</span>
+          <span class="lang-te">మా గురించి</span>
+        </span>
+      </div>
+      <h2 class="about-head">
+        <span class="lang-en">A store run on <br>fit, fabric &amp; word of mouth.</span>
+        <span class="lang-te">ఫిట్, ఫ్యాబ్రిక్ మరియు నమ్మకంతో <br>నడిచే దుకాణం.</span>
+      </h2>
+      <p>
+        <span class="lang-en">Rokkstar isn't a mall — it's a proper neighbourhood clothing shop. Every rack is chosen the way a tailor picks fabric: by hand, by feel, and by what actually wears well through a Vijayawada summer.</span>
+        <span class="lang-te">రొక్స్టార్ ఒక పెద్ద మాల్ కాదు — ఇది నిజమైన లోకల్ దుకాణం. ప్రతి దుస్తు చేతితో ఎంపిక చేయబడుతుంది, ఫ్యాబ్రిక్ నాణ్యత మరియు ఫిట్ ఆధారంగా. విజయవాడ ఎండలకు తగిన విధంగా ఉండేలా ప్రతిదీ ఎంపిక చేయబడింది.</span>
+      </p>
+      <p>
+        <span class="lang-en">We stock menswear for everyday and occasion, and kidswear built to survive school, play and everything in between. No mass-rack guesswork — just clothes we'd put our own family in.</span>
+        <span class="lang-te">మేము రోజువారీ మరియు ప్రత్యేక సందర్భాల మెన్స్వేర్తో పాటు, పాఠశాల మరియు ఆటలకు తట్టుకునే కిడ్స్వేర్ను కూడా ఉంచుతాము. మా స్వంత కుటుంబ సభ్యులకు ఎలాంటి బట్టలు వేస్తామో అలాంటి నాణ్యత గల బట్టలు మాత్రమే ఇక్కడ ఉంటాయి.</span>
+      </p>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">2,200+</div>
+          <div class="lbl">
+            <span class="lang-en">Followers &amp; counting</span>
+            <span class="lang-te">ఇన్స్టాగ్రామ్ ఫాలోవర్లు</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="num">2</div>
+          <div class="lbl">
+            <span class="lang-en">Lines — Men &amp; Kids</span>
+            <span class="lang-te">మెన్స్ &amp; కిడ్స్ లైన్లు</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="num">1</div>
+          <div class="lbl">
+            <span class="lang-en">Store, Gandhinagar</span>
+            <span class="lang-te">దుకాణం, గాంధీనగర్</span>
+          </div>
+        </div>
+      </div>
+      <div class="founder-note">
+        <div class="founder-mark">R</div>
+        <div>
+          <blockquote>
+            <span class="lang-en">"We don't stock everything — we stock what we'd actually let our own kids and family wear. That's the only rule."</span>
+            <span class="lang-te">"మేము దుకాణంలో అన్నింటినీ ఉంచము — మా స్వంత పిల్లలు మరియు కుటుంబ సభ్యులు ధరించడానికి ఇష్టపడే నాణ్యత గల వాటిని మాత్రమే ఉంచుతాము. ఇదే మా ఏకైక నియమం."</span>
+          </blockquote>
+          <div class="sig">
+            <span class="lang-en">Rokkstar Team, Gandhinagar</span>
+            <span class="lang-te">రొక్స్టార్ బృందం, గాంధీనగర్</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — FEATURED COLLECTIONS PREVIEW -->
+<section id="collection" style="background:var(--paper-2); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="lookbook-header reveal">
+      <div class="eyebrow">
+        <span>
+          <span class="lang-en">Featured Collections</span>
+          <span class="lang-te">మా కలెక్షన్స్</span>
+        </span>
+      </div>
+      <h2 class="lookbook-title">
+        <span class="lang-en">Our Collections</span>
+        <span class="lang-te">మా ప్రత్యేక సేకరణలు</span>
+      </h2>
+      <p class="lookbook-subtext">
+        <span class="lang-en">Every style has a story</span>
+        <span class="lang-te">ప్రతి స్టైల్కి ఒక స్టోరీ ఉంటుంది</span>
+      </p>
+    </div>
+    
+    <div class="lookbook-grid reveal">
+      <!-- Card 1: Ethnic/Festive Wear -->
+      <div class="col-card large-1 ethnic-men" onclick="window.location.href='menswear.html'">
+        <div class="img-wrap"></div>
+        <div class="card-overlay">
+          <div class="card-label">
+            <span class="lang-en">Men's Ethnic &amp; Festive Wear</span>
+            <span class="lang-te">ఎథ్నిక్ &amp; పండుగ మెన్స్വേర్</span>
+          </div>
+          <div class="card-sub">
+            <span class="lang-en">View Kurta Sets &amp; Sherwanis</span>
+            <span class="lang-te">కుర్తా సెట్స్ &amp; షేర్వాణీలు చూడండి</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2: Men's Shirts & Casuals -->
+      <div class="col-card large-2 casual-men" onclick="window.location.href='menswear.html'">
+        <div class="img-wrap"></div>
+        <div class="card-overlay">
+          <div class="card-label">
+            <span class="lang-en">Men's Shirts &amp; Denim Casuals</span>
+            <span class="lang-te">మెన్స్ షర్టులు &amp; క్యాజువల్స్</span>
+          </div>
+          <div class="card-sub">
+            <span class="lang-en">Washed Denim &amp; Linen Shirts</span>
+            <span class="lang-te">డెనిమ్ &amp; లినెన్ షర్టులు</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 3: Kids Boys Wear -->
+      <div class="col-card small-1 boys-kids" onclick="localStorage.setItem('kids_gender', 'boys'); window.location.href='kidswear.html'">
+        <div class="img-wrap"></div>
+        <div class="card-overlay">
+          <div class="card-label">
+            <span class="lang-en">Kids Boys Wear</span>
+            <span class="lang-te">బాలల కిడ్స్వేర్</span>
+          </div>
+          <div class="card-sub">
+            <span class="lang-en">Playwear &amp; Party Outfits</span>
+            <span class="lang-te">ప్లే-వేర్ &amp; పార్టీ అవుట్‌ఫిట్స్</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 4: Kids Girls Wear -->
+      <div class="col-card small-2 girls-kids" onclick="localStorage.setItem('kids_gender', 'girls'); window.location.href='kidswear.html'">
+        <div class="img-wrap"></div>
+        <div class="card-overlay">
+          <div class="card-label">
+            <span class="lang-en">Kids Girls Wear</span>
+            <span class="lang-te">బాలికల కిడ్స్వేర్</span>
+          </div>
+          <div class="card-sub">
+            <span class="lang-en">Frocks &amp; Traditional Outfits</span>
+            <span class="lang-te">ఫ్రాక్స్ &amp; పండుగ లెహంగాలు</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 5: New Arrivals (Badge) -->
+      <div class="col-card small-3 new-arrivals" onclick="window.location.href='new-arrivals.html'">
+        <div class="new-badge">
+          <span class="lang-en">New</span><span class="lang-te">కొత్తది</span>
+        </div>
+        <div class="img-wrap"></div>
+        <div class="card-overlay">
+          <div class="card-label">
+            <span class="lang-en">Fresh Store Arrivals</span>
+            <span class="lang-te">నూతన రాకలు (New Arrivals)</span>
+          </div>
+          <div class="card-sub">
+            <span class="lang-en">New Fabric &amp; Stitches Added Weekly</span>
+            <span class="lang-te">వారానికొకసారి సరికొత్త డిజైన్లు</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="explore-cta-container reveal">
+      <a class="btn solid" href="menswear.html">
+        <span class="lang-en">Explore All Collections →</span>
+        <span class="lang-te">అన్ని కలెక్షన్స్ చూడండి →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MENSWEAR GRID DETAIL -->
+<section id="menswear" class="cat-section">
+  <div class="wrap">
+    <div class="cat-head reveal">
+      <div>
+        <div class="eyebrow"><span><span class="lang-en">Menswear Lines</span><span class="lang-te">మెన్స్వేర్</span></span></div>
+        <h2 class="cat-title">
+          <span class="lang-en">For every day <br>you show up.</span>
+          <span class="lang-te">రోజువారీ ధరించడానికి <br>ఖచ్చితమైన దుస్తులు</span>
+        </h2>
+      </div>
+      <p class="cat-desc">
+        <span class="lang-en">Shirts, trousers, ethnic and festive fits — sized right, stitched to last, styled without trying too hard.</span>
+        <span class="lang-te">షర్టులు, ట్రౌజర్లు, ఎథ్నిక్ మరియు పండుగ దుస్తులు — సరైన సైజులు, మన్నికైన కుట్లు మరియు ఆకర్షణీయమైన శైలి.</span>
+      </p>
+    </div>
+    <div class="card-row reveal">
+      <div class="cat-card" onclick="window.location.href='menswear.html'">
+        <div class="cat-thumb" style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=400&q=80');"></div>
+        <span class="cat-num">01</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Formal Shirts</span>
+            <span class="lang-te">ఫార్మల్ షర్టులు</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cat-card" onclick="window.location.href='menswear.html'">
+        <div class="cat-thumb" style="background-image: url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80');"></div>
+        <span class="cat-num">02</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Casual &amp; Denim</span>
+            <span class="lang-te">క్యాజువల్ &amp; డెనిమ్</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cat-card" onclick="window.location.href='menswear.html'">
+        <div class="cat-thumb" style="background-image: url('assets/lookbook_festive_menswear.png');"></div>
+        <span class="cat-num">03</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Ethnic &amp; Festive</span>
+            <span class="lang-te">ఎథ్నిక్ &amp; పండుగ దుస్తులు</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cat-card" onclick="window.location.href='menswear.html'">
+        <div class="cat-thumb" style="background-image: url('https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=400&q=80');"></div>
+        <span class="cat-num">04</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Trousers &amp; Co-ords</span>
+            <span class="lang-te">ట్రౌజర్లు &amp; కో-ఆర్డ్స్</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER DIVIDER BANNER -->
+<section class="chapter-divider-banner" style="background-image: linear-gradient(rgba(23, 19, 15, 0.45), rgba(23, 19, 15, 0.45)), url('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=1200&q=80');">
+  <div class="wrap divider-banner-content reveal">
+    <div class="subtitle"><span class="lang-en">For the next generation</span><span class="lang-te">తదుపరి తరం కోసం</span></div>
+    <h2 class="title"><span class="lang-en">From fathers to sons. Style runs in the family.</span><span class="lang-te">తండ్రుల నుండి కొడుకుల వరకు. ఒకే ఒక రొక్స్టార్ శైలి.</span></h2>
+  </div>
+</section>
+
+<!-- KIDSWEAR GRID DETAIL -->
+<section id="kidswear" class="cat-section kids-section">
+  <div class="wrap">
+    <div class="cat-head reveal">
+      <div>
+        <div class="eyebrow">
+          <span>
+            <span class="lang-en">Kidswear Lines</span>
+            <span class="lang-te">కిడ్స్వేర్</span>
+          </span>
+        </div>
+        <h2 class="cat-title">
+          <span class="lang-en">Built for play, <br>ready for parties.</span>
+          <span class="lang-te">ఆటలకు అనుకూలం, <br>వేడుకలకు సిద్ధం.</span>
+        </h2>
+      </div>
+      <p class="cat-desc">
+        <span class="lang-en">Soft fabrics, sturdy stitching and sizes that grow with them — from playwear to their next family function.</span>
+        <span class="lang-te">మెత్తని వస్త్రాలు, మన్నికైన కుట్లు మరియు పిల్లలతో పాటు పెరిగే సైజులు — రోజువారీ ఆటల నుండి కుటుంబ వేడుకల వరకు.</span>
+      </p>
+    </div>
+    <div class="card-row reveal">
+      <div class="cat-card" onclick="localStorage.setItem('kids_gender', 'boys'); window.location.href='kidswear.html'">
+        <div class="cat-thumb" style="background-image: url('assets/lookbook_kids_boys.png');"></div>
+        <span class="cat-num">01</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Everyday Playwear</span>
+            <span class="lang-te">రోజువారీ ఆట దుస్తులు</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cat-card" onclick="localStorage.setItem('kids_gender', 'girls'); window.location.href='kidswear.html'">
+        <div class="cat-thumb" style="background-image: url('assets/lookbook_kids_girls.png');"></div>
+        <span class="cat-num">02</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Festive Traditional</span>
+            <span class="lang-te">పండుగ సాంప్రదాయ దుస్తులు</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cat-card" onclick="localStorage.setItem('kids_gender', 'boys'); window.location.href='kidswear.html'">
+        <div class="cat-thumb" style="background-image: url('assets/lookbook_kids_party.png');"></div>
+        <span class="cat-num">03</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Partywear Suits</span>
+            <span class="lang-te">పార్టీ బట్టలు &amp; కోటు సూట్లు</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cat-card" onclick="localStorage.setItem('kids_gender', 'boys'); window.location.href='kidswear.html'">
+        <div class="cat-thumb" style="background-image: url('assets/lookbook_school_daywear.png');"></div>
+        <span class="cat-num">04</span>
+        <div class="cat-details">
+          <div class="name">
+            <span class="lang-en">Uniforms &amp; Basics</span>
+            <span class="lang-te">యూనిఫారాలు &amp; బేసిక్స్</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FABRIC / QUALITY -->
+<section id="fabric">
+  <div class="wrap">
+    <div class="fabric-head reveal">
+      <div class="eyebrow">
+        <span>
+          <span class="lang-en">Fabric &amp; Quality</span>
+          <span class="lang-te">వస్త్ర నాణ్యత</span>
+        </span>
+      </div>
+      <h2 class="about-head" style="font-size:clamp(2rem,4vw,2.8rem)">
+        <span class="lang-en">We check the weave before we check the size chart.</span>
+        <span class="lang-te">మేము సైజు చార్ట్ చూసే ముందే దుస్తుల నాణ్యతను పరీక్షిస్తాము.</span>
+      </h2>
+      <p style="margin-top:14px; color:#5a5142; max-width:520px;">
+        <span class="lang-en">Every fabric on our racks is chosen for how it wears after the tenth wash, not just how it photographs on day one.</span>
+        <span class="lang-te">మొదటి రోజు ఫోటోలలో కనిపించే అందం మాత్రమే కాదు, పదిసార్లు ఉతికిన తర్వాత కూడా అదే రంగు మరియు మన్నిక ఉండేలా బట్టలు ఎంపిక చేస్తాము.</span>
+      </p>
+    </div>
+    <div class="swatch-grid reveal">
+      <div class="swatch">
+        <div class="patch p-cotton"></div>
+        <div class="fname">
+          <span class="lang-en">Combed Cotton</span>
+          <span class="lang-te">కాంబెడ్ కాటన్</span>
+        </div>
+        <div class="fdesc">
+          <span class="lang-en">Breathable everyday wear, colour-fast weave.</span>
+          <span class="lang-te">శ్వాసక్రియకు అనుకూలమైన రోజువారీ దుస్తులు, రంగు వెలవెలబోని నేత.</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="patch p-linen"></div>
+        <div class="fname">
+          <span class="lang-en">Pure Linen</span>
+          <span class="lang-te">ప్యూర్ లినెన్</span>
+        </div>
+        <div class="fdesc">
+          <span class="lang-en">Festive-season staple, light against the heat.</span>
+          <span class="lang-te">పండుగ సీజన్ ప్రత్యేకం, వేడికి హాయిగా ఉంటుంది.</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="patch p-denim"></div>
+        <div class="fname">
+          <span class="lang-en">Washed Denim</span>
+          <span class="lang-te">వాష్డ్ డెనిమ్</span>
+        </div>
+        <div class="fdesc">
+          <span class="lang-en">Reinforced seams, built for daily wear.</span>
+          <span class="lang-te">మన్నికైన కుట్లు, నిరంతర వాడకానికి అనువైనది.</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="patch p-wool"></div>
+        <div class="fname">
+          <span class="lang-en">Blended Wool</span>
+          <span class="lang-te">వుల్ బ్లెండ్</span>
+        </div>
+        <div class="fdesc">
+          <span class="lang-en">Winter-weight, tailored jackets &amp; sets.</span>
+          <span class="lang-te">శీతాకాలపు దుస్తులు, చక్కగా కుట్టిన జాకెట్లు &amp; సెట్లు.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIZE GUIDE -->
+<section id="sizeguide">
+  <div class="wrap">
+    <div class="eyebrow reveal">
+      <span>
+        <span class="lang-en">Size Guide</span>
+        <span class="lang-te">సైజు గైడ్</span>
+      </span>
+    </div>
+    <h2 class="about-head reveal" style="font-size:clamp(2rem,4vw,2.8rem); margin-bottom:44px;">
+      <span class="lang-en">Not sure of your size? <br>Start here.</span>
+      <span class="lang-te">మీ సైజు తెలియదా? <br>ఇక్కడ సరిచూసుకోండి.</span>
+    </h2>
+    <div class="size-wrap reveal">
+      <div>
+        <table class="sizes">
+          <caption class="lang-en">Menswear — Shirts &amp; Tees</caption>
+          <caption class="lang-te">మెన్స్ షర్టులు &amp; టీ-షర్టుల సైజులు</caption>
+          <thead>
+            <tr>
+              <th><span class="lang-en">Size</span><span class="lang-te">సైజు</span></th>
+              <th><span class="lang-en">Chest (in)</span><span class="lang-te">ఛాతీ (అంగుళాలు)</span></th>
+              <th><span class="lang-en">Length (in)</span><span class="lang-te">పొడవు (అంగుళాలు)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>S</td><td>36–38</td><td>27</td></tr>
+            <tr><td>M</td><td>39–40</td><td>28</td></tr>
+            <tr><td>L</td><td>41–42</td><td>29</td></tr>
+            <tr><td>XL</td><td>43–44</td><td>30</td></tr>
+            <tr><td>XXL</td><td>45–46</td><td>31</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table class="sizes">
+          <caption class="lang-en">Kidswear — Age Guide</caption>
+          <caption class="lang-te">కిడ్స్ వేర్ — వయసు ప్రకారం గైడ్</caption>
+          <thead>
+            <tr>
+              <th><span class="lang-en">Age</span><span class="lang-te">వయసు</span></th>
+              <th><span class="lang-en">Height (cm)</span><span class="lang-te">ఎత్తు (సెం.మీ)</span></th>
+              <th><span class="lang-en">Chest (in)</span><span class="lang-te">ఛాతీ (అంగుళాలు)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2–3 <span class="lang-en">yrs</span><span class="lang-te">సంవత్సరాలు</span></td>
+              <td>90–100</td>
+              <td>21</td>
+            </tr>
+            <tr>
+              <td>4–5 <span class="lang-en">yrs</span><span class="lang-te">సంవత్సరాలు</span></td>
+              <td>105–115</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td>6–7 <span class="lang-en">yrs</span><span class="lang-te">సంవత్సరాలు</span></td>
+              <td>118–128</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>8–10 <span class="lang-en">yrs</span><span class="lang-te">సంవత్సరాలు</span></td>
+              <td>130–142</td>
+              <td>27</td>
+            </tr>
+            <tr>
+              <td>11–13 <span class="lang-en">yrs</span><span class="lang-te">సంవత్సరాలు</span></td>
+              <td>145–158</td>
+              <td>30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="size-note reveal">
+      <span class="lang-en">Between sizes? Walk in and we'll fit you on the spot — most alterations are done same-day.</span>
+      <span class="lang-te">సైజు మధ్యలో ఉందా? నేరుగా రండి, అదే రోజు ఉచితంగా ఆల్టరేషన్లు/ఫిట్టింగ్ చేసి ఇస్తాం.</span>
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 4 — INSTAGRAM GRID -->
+<section id="gallery" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="lookbook-header reveal" style="margin-bottom: 40px;">
+      <div class="eyebrow">
+        <span>
+          <span class="lang-en">Follow the Rokkstar Family</span>
+          <span class="lang-te">మమ్మల్ని ఫాలో అవ్వండి</span>
+        </span>
+      </div>
+      <h2 class="lookbook-title">@rokkstar_menswear_kidswear</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item g1">
+        <span><span class="lang-en">Festive Kurta</span><span class="lang-te">పండుగ మెన్స్వేర్</span></span>
+        <div class="overlay-ig">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>View Post</span>
+        </div>
+      </div>
+      <div class="gallery-item g2">
+        <span><span class="lang-en">Kids Play</span><span class="lang-te">పిల్లల ఆట దుస్తులు</span></span>
+        <div class="overlay-ig">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>View Post</span>
+        </div>
+      </div>
+      <div class="gallery-item g3">
+        <span><span class="lang-en">New In</span><span class="lang-te">కొత్త కలెక్షన్</span></span>
+        <div class="overlay-ig">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>View Post</span>
+        </div>
+      </div>
+      <div class="gallery-item g4">
+        <span><span class="lang-en">Mens Shirts</span><span class="lang-te">మెన్స్వేర్ షర్టులు</span></span>
+        <div class="overlay-ig">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>View Post</span>
+        </div>
+      </div>
+      <div class="gallery-item g5">
+        <span><span class="lang-en">Denims</span><span class="lang-te">క్యాజువల్ డెనిమ్స్</span></span>
+        <div class="overlay-ig">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>View Post</span>
+        </div>
+      </div>
+      <div class="gallery-item g6">
+        <span><span class="lang-en">Party Outfits</span><span class="lang-te">పిల్లల పార్టీ వేర్</span></span>
+        <div class="overlay-ig">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>View Post</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-cta reveal">
+      <a class="btn dark" href="https://www.instagram.com/rokkstar_menswear_kidswear/" target="_blank" rel="noopener">
+        <span class="lang-en">Follow @rokkstar_menswear_kidswear</span>
+        <span class="lang-te">ఫాలో అవ్వండి / Follow Us</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — TESTIMONIALS SLIDESHOW -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="eyebrow reveal">
+      <span>
+        <span class="lang-en">What Our Customers Say</span>
+        <span class="lang-te">మా కస్టమర్లు ఏమంటున్నారు</span>
+      </span>
+    </div>
+    
+    <div class="reviews-split-grid reveal">
+      <div class="reviews-image-wrap">
+        <div class="reviews-image" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="reviews-badge-float">
+          <span class="stars">★★★★★</span>
+          <span class="lbl">4.2 ★ Google Reviews</span>
+        </div>
+      </div>
+      
+      <div class="test-slideshow">
+        <button class="test-arrow prev" aria-label="Previous Review" onclick="changeSlide(-1)">←</button>
+        <div class="test-container">
+          <!-- Slide 1 -->
+          <div class="test-slide active">
+            <div class="stars">★★★★★</div>
+            <p class="quote">
+              <span class="lang-en">"Great quality, fair pricing. We always get our son's kidswear from here."</span>
+              <span class="lang-te">"నాణ్యత చాలా బాగుంది, ధర కూడా న్యాయంగా ఉంది. మా అబ్బాయికి కిడ్స్ వేర్ ఇక్కడే తీసుకుంటాం ఎప్పుడూ."</span>
+            </p>
+            <div class="who">
+              <span class="lang-en">— Rajesh, Vijayawada</span>
+              <span class="lang-te">— రాజేష్, విజయవాడ</span>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="test-slide">
+            <div class="stars">★★★★★</div>
+            <p class="quote">
+              <span class="lang-en">"Bought my son's festive set here — fit perfectly, no alterations needed."</span>
+              <span class="lang-te">"నా కుమారుడి పండుగ డ్రెస్ ఇక్కడే కొన్నాను — పర్ఫెక్ట్ గా సరిపోయింది, ఆల్టరేషన్స్ కూడా అవసరం లేదు."</span>
+            </p>
+            <div class="who">
+              <span class="lang-en">— Srinu, Vijayawada</span>
+              <span class="lang-te">— శ్రీను, విజయవాడ</span>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="test-slide">
+            <div class="stars">★★★★★</div>
+            <p class="quote">
+              <span class="lang-en">"Good fabric quality for the price. My shirts still look new after months."</span>
+              <span class="lang-te">"ధరకి తగిన నాణ్యమైన వస్త్రం. కొన్ని నెలల తర్వాత కూడా నా షర్టులు కొత్త వాటిలానే ఉన్నాయి."</span>
+            </p>
+            <div class="who">
+              <span class="lang-en">— Prasad, Menswear Customer</span>
+              <span class="lang-te">— ప్రసాద్, విజయవాడ</span>
+            </div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="test-slide">
+            <div class="stars">★★★★☆</div>
+            <p class="quote">
+              <span class="lang-en">"Staff actually helps you pick the right size instead of just selling."</span>
+              <span class="lang-te">"కేవలం అమ్మడమే కాకుండా, సిబ్బంది సరైన సైజు ఎంపిక చేయడంలో సహాయపడతారు."</span>
+            </p>
+            <div class="who">
+              <span class="lang-en">— Parent, School uniform client</span>
+              <span class="lang-te">— తల్లిదండ్రులు, విజయవాడ</span>
+            </div>
+          </div>
+        </div>
+        <button class="test-arrow next" aria-label="Next Review" onclick="changeSlide(1)">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE / WHY US -->
+<section id="experience">
+  <div class="wrap">
+    <div class="cat-head reveal" style="color:var(--ink);">
+      <div>
+        <div class="eyebrow">
+          <span>
+            <span class="lang-en">Why Rokkstar</span>
+            <span class="lang-te">మా ప్రత్యేకత</span>
+          </span>
+        </div>
+        <h2 class="about-head" style="font-size:clamp(2.1rem,4vw,3.2rem)">
+          <span class="lang-en">Small store. <br>Straight answers.</span>
+          <span class="lang-te">చిన్న దుకాణం. <br>నిజాయితీ గల సమాధానాలు.</span>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="wrap reveal">
+    <div class="exp-grid">
+      <div class="exp-item">
+        <span class="mono">FIT</span>
+        <h3>
+          <span class="lang-en">Honest sizing</span>
+          <span class="lang-te">నిజాయితీ గల సైజు</span>
+        </h3>
+        <div class="te">
+          <span class="lang-en">Sizing options that fit right</span>
+          <span class="lang-te">నిజమైన సైజు సలహా ఇస్తాం</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="mono">FAB</span>
+        <h3>
+          <span class="lang-en">Fabric you can trust</span>
+          <span class="lang-te">నమ్మదగిన వస్త్రం</span>
+        </h3>
+        <div class="te">
+          <span class="lang-en">Durability you can feel</span>
+          <span class="lang-te">నాణ్యత పరీక్షించిన బట్టలు</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="mono">FAM</span>
+        <h3>
+          <span class="lang-en">Men &amp; Kids</span>
+          <span class="lang-te">మెన్స్ &amp; కిడ్స్</span>
+        </h3>
+        <div class="te">
+          <span class="lang-en">Under one roof</span>
+          <span class="lang-te">ఒకే దుకాణంలో మెన్స్ &amp; కిడ్స్</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="mono">LOC</span>
+        <h3>
+          <span class="lang-en">Walk in</span>
+          <span class="lang-te">ఎప్పుడైనా రావచ్చు</span>
+        </h3>
+        <div class="te">
+          <span class="lang-en">No appointment needed</span>
+          <span class="lang-te">అపాయింట్మెంట్ లేకుండా నేరుగా రండి</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow reveal">
+      <span>
+        <span class="lang-en">Questions</span>
+        <span class="lang-te">ప్రశ్నలు</span>
+      </span>
+    </div>
+    <h2 class="about-head reveal" style="font-size:clamp(2rem,4vw,2.6rem); margin-bottom:40px;">
+      <span class="lang-en">Before you visit.</span>
+      <span class="lang-te">మీరు సందర్శించే ముందు.</span>
+    </h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>
+            <span class="lang-en">Do you do alterations on the spot?</span>
+            <span class="lang-te">వెంటనే ఆల్టరేషన్లు చేస్తారా?</span>
+          </span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="lang-en">Yes — most hemming and fitting is done same-day, while you shop or wait.</span>
+            <span class="lang-te">అవును, చాలా ఆల్టరేషన్లు అదే రోజు చేసి ఇస్తాము. మీరు షాపింగ్ చేసే లోపు సిద్ధంగా ఉంటుంది.</span>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>
+            <span class="lang-en">Can I exchange if the size is wrong?</span>
+            <span class="lang-te">సైజు సరిపోకపోతే మార్చుకోవచ్చా?</span>
+          </span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="lang-en">Exchanges are accepted within 7 days with the bill, tag intact.</span>
+            <span class="lang-te">అవును, బిల్లు మరియు ట్యాగ్తో 7 రోజుల్లో మార్పిడి చేయవచ్చు.</span>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>
+            <span class="lang-en">Do you stock uniforms and school wear?</span>
+            <span class="lang-te">స్కూల్ యూనిఫారాలు మరియు బట్టలు ఉంటాయా?</span>
+          </span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="lang-en">Yes, along with everyday and festive kidswear, in sizes for infants through teens.</span>
+            <span class="lang-te">అవును, బాలింతల నుండి టీనేజర్ల వరకు అన్ని రకాల స్కూల్ మరియు పండుగ దుస్తులు ఉన్నాయి.</span>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>
+            <span class="lang-en">Can I call ahead and have items kept ready?</span>
+            <span class="lang-te">ముందుగానే ఫోన్ చేసి సిద్ధంగా ఉంచవచ్చా?</span>
+          </span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="lang-en">Call 96668 96418 and we'll set aside sizes and styles before you arrive.</span>
+            <span class="lang-te">కాల్ చేయండి 96668 96418. మీరు రావడానికి ముందే మీ సైజు బట్టలు సిద్ధంగా ఉంచుతాము.</span>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>
+            <span class="lang-en">What payment options do you accept?</span>
+            <span class="lang-te">ఏ విధమైన పేమెంట్స్ తీసుకుంటారు?</span>
+          </span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="lang-en">Cash, all major cards and UPI are accepted in-store.</span>
+            <span class="lang-te">నగదు, క్రెడిట్/డెబిట్ కార్డులు మరియు UPI ద్వారా కూడా చెల్లించవచ్చు.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 — STORE HIGHLIGHT SPLIT-SCREEN -->
+<section id="location" style="background:var(--ink); color:var(--cream-text);">
+  <div class="wrap store-highlight-grid reveal">
+    <!-- Left side map box -->
+    <div class="map-frame-box">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.297424424683!2d80.62127118000001!3d16.51152912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35efaa5667e42d%3A0xc3f830d9518d6a8b!2sROKKSTAR%20(F20)%20men&#39;s%20wear%20%26%20kid&#39;s%20wear!5e0!3m2!1sen!2sin!4v1719900000000!5m2!1sen!2sin" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ROKKSTAR (F20) men's wear &amp; kid's wear location"></iframe>
+    </div>
+    
+    <!-- Right side store detail content -->
+    <div class="store-info-block">
+      <div class="eyebrow">
+        <span>
+          <span class="lang-en">Store Highlight</span>
+          <span class="lang-te">దుకాణం ముఖ్యాంశాలు</span>
+        </span>
+      </div>
+      <h2 class="store-info-title">
+        <span class="lang-en">Visit Our Store</span>
+        <span class="lang-te">మా స్టోర్కి రండి</span>
+      </h2>
+      <p style="color: rgba(244,236,221,0.76); font-size: 1.02rem; margin-bottom: 28px; line-height: 1.6;">
+        <span class="lang-en">Come see, touch, and choose every fabric and fit yourself — right here on F20 Street, Gandhinagar, Vijayawada. Experience custom alterations and tailored shopping designed for stars.</span>
+        <span class="lang-te">గాంధీనగర్, విజయవాడలో మా స్టోర్లో ప్రతి ఫ్యాబ్రిక్ని, ప్రతి ఫిట్ని మీరే స్వయంగా చూడండి, తాకండి, ఎంచుకోండి. సరికొత్త డిజైన్లు మరియు కస్టమ్ ఫిట్టింగ్ అనుభవం.</span>
+      </p>
+      
+      <div class="store-details-list">
+        <div class="store-detail-row">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <div>
+            <strong><span class="lang-en">Address:</span><span class="lang-te">చిరునామా:</span></strong>
+            <div style="color: rgba(244,236,221,0.85); margin-top: 2px;">
+              <span class="lang-en">F20 street, Gandhinagar, Vijayawada, Andhra Pradesh 520003</span>
+              <span class="lang-te">F20 వీధి, గాంధీనగర్, విజయవాడ, ఆంధ్రప్రదేశ్ 520003</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--brass-light); margin-top: 2px;">
+              <span>Plus Code: GJ8H+C2 Vijayawada</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="store-detail-row">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <div>
+            <strong><span class="lang-en">Phone:</span><span class="lang-te">ఫోన్ నంబర్:</span></strong>
+            <div style="color: rgba(244,236,221,0.85); margin-top: 2px;"><a href="tel:9666896418">96668 96418</a></div>
+          </div>
+        </div>
+        
+        <div class="store-detail-row">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 13.3L11 12.81V7h1.5v4.97l3.71 2.21-.72 1.12z"/></svg>
+          <div>
+            <strong><span class="lang-en">Store Hours:</span><span class="lang-te">స్టోర్ వేళలు:</span></strong>
+            <div style="color: rgba(244,236,221,0.85); margin-top: 2px;">
+              <span class="lang-en">10:00 AM – 10:00 PM, all days</span>
+              <span class="lang-te">ప్రతిరోజూ ఉదయం 10:00 నుండి రాత్రి 10:00 వరకు</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="store-action-buttons">
+        <a class="btn solid" href="https://maps.google.com/?q=Rokkstar+(F20)+men's+wear+%26+kid's+wear+Vijayawada" target="_blank" rel="noopener">
+          <span class="lang-en">Directions</span>
+          <span class="lang-te">దిశలు పొందండి</span>
+        </a>
+        <a class="btn" href="https://wa.me/919666896418" target="_blank" rel="noopener" style="border-color: var(--brass-light); color: var(--cream-text);">
+          <span class="lang-en">Chat on WhatsApp</span>
+          <span class="lang-te">WhatsApp చాట్</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM SECTION -->
+<section id="contact" style="padding-top:100px;">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">
+        <span>
+          <span class="lang-en">Contact us</span>
+          <span class="lang-te">సంప్రదించండి</span>
+        </span>
+      </div>
+      <h2 style="font-size:clamp(2rem,4vw,2.6rem); font-weight:500;">
+        <span class="lang-en">Write to us.</span>
+        <span class="lang-te">మాకు రాయండి.</span>
+      </h2>
+      <form class="reach" onsubmit="event.preventDefault(); document.getElementById('msg-status').style.display='block'; this.reset();">
+        <input type="text" placeholder="Your name / మీ పేరు" required>
+        <input type="tel" placeholder="Phone number / ఫోన్ నంబర్" required>
+        <textarea rows="3" placeholder="What are you looking for? / మీకు ఏమి కావాలి?"></textarea>
+        <button type="submit">
+          <span class="lang-en">Send message</span>
+          <span class="lang-te">సందేశం పంపండి</span>
+        </button>
+        <div id="msg-status" style="display:none; margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--brass-light);">
+          <span class="lang-en">Message noted — we'll call you back!</span>
+          <span class="lang-te">సందేశం అందింది — మేము మీకు త్వరలోనే కాల్ చేస్తాము!</span>
+        </div>
+      </form>
+    </div>
+    <div class="reveal" style="display: flex; flex-direction: column; justify-content: center;">
+      <div class="contact-list" style="margin-top: 0;">
+        <div class="row">
+          <span class="k">
+            <span class="lang-en">Instagram</span>
+            <span class="lang-te">ఇన్స్టాగ్రామ్</span>
+          </span>
+          <span class="v">
+            <a href="https://www.instagram.com/rokkstar_menswear_kidswear/" target="_blank" rel="noopener">@rokkstar_menswear_kidswear</a>
+          </span>
+        </div>
+        <div class="row">
+          <span class="k">
+            <span class="lang-en">WhatsApp</span>
+            <span class="lang-te">వాట్సాప్</span>
+          </span>
+          <span class="v"><a href="https://wa.me/919666896418" target="_blank" rel="noopener">96668 96418</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-row">
+    <span>
+      <span class="lang-en">© 2026 Rokkstar Menswear &amp; Kidswear — Gandhinagar, Vijayawada</span>
+      <span class="lang-te">© 2026 రొక్స్టార్ మెన్స్వేర్ &amp; కిడ్స్వేర్ — గాంధీనగర్, విజయవాడ</span>
+    </span>
+    <div class="foot-links">
+      <a href="index.html"><span class="lang-en">Home</span><span class="lang-te">హోమ్</span></a>
+      <a href="https://www.instagram.com/rokkstar_menswear_kidswear/" target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:9666896418">96668 96418</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta">
+  <a href="tel:9666896418">
+    <span class="ic">☎</span>
+    <span class="lang-en">Call</span><span class="lang-te">కాల్ చేయండి</span>
+  </a>
+  <a href="https://wa.me/919666896418" target="_blank" rel="noopener">
+    <span class="ic">✆</span>
+    <span class="lang-en">WhatsApp</span><span class="lang-te">వాట్సాప్</span>
+  </a>
+  <a href="https://maps.google.com/?q=Rokkstar+(F20)+men's+wear+%26+kid's+wear+Vijayawada" target="_blank" rel="noopener">
+    <span class="ic">⚑</span>
+    <span class="lang-en">Directions</span><span class="lang-te">చిరునామా</span>
+  </a>
+</div>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Language settings toggle
+function setLanguage(lang) {
+  if (lang === 'te') {
+    document.body.classList.remove('lang-en');
+    document.body.classList.add('lang-te');
+    document.getElementById('btn-en').classList.remove('active');
+    document.getElementById('btn-te').classList.add('active');
+    localStorage.setItem('rokkstar_lang', 'te');
+  } else {
+    document.body.classList.remove('lang-te');
+    document.body.classList.add('lang-en');
+    document.getElementById('btn-te').classList.remove('active');
+    document.getElementById('btn-en').classList.add('active');
+    localStorage.setItem('rokkstar_lang', 'en');
+  }
+  // Re-adjust active FAQ height if open
+  document.querySelectorAll('.faq-item.open .faq-a').forEach(ans => {
+    ans.style.maxHeight = ans.scrollHeight + 'px';
+  });
+}
+
+// Cinematic Splash Loader animation
+function initSplash() {
+  const isViewed = sessionStorage.getItem('rokkstar_splash_viewed');
+  const splash = document.getElementById('splash-screen');
+  
+  if (isViewed) {
+    if (splash) splash.remove();
+    return;
+  }
+  
+  // Elements
+  const scissor = document.querySelector('.scissor-container');
+  const tapeTop = document.querySelector('.tape-half.top');
+  const tapeBottom = document.querySelector('.tape-half.bottom');
+  const teluguLogo = document.querySelector('.stitch-text.telugu');
+  const englishLogo = document.querySelector('.stitch-text.english');
+  const taglineLogo = document.querySelector('.stitch-tagline');
+  
+  // BEAT 1 & 2: Draw tape & Cut
+  scissor.classList.add('active');
+  
+  // BEAT 3: Part tape halves
+  setTimeout(() => {
+    tapeTop.classList.add('parted');
+    tapeBottom.classList.add('parted');
+  }, 600);
+  
+  // BEAT 4: Stitch write-on logo (Telugu)
+  setTimeout(() => {
+    teluguLogo.style.animation = 'draw-stitch 1.4s ease forwards';
+  }, 800);
+  
+  // Stitch write-on logo (English)
+  setTimeout(() => {
+    englishLogo.style.animation = 'draw-stitch 1.4s ease forwards';
+  }, 1400);
+  
+  // Stitch tagline
+  setTimeout(() => {
+    taglineLogo.style.animation = 'draw-tagline 1.0s ease forwards';
+  }, 2200);
+  
+  // BEAT 5: Exits
+  setTimeout(() => {
+    tapeTop.style.transition = 'transform 0.8s cubic-bezier(0.76, 0, 0.24, 1)';
+    tapeBottom.style.transition = 'transform 0.8s cubic-bezier(0.76, 0, 0.24, 1)';
+    tapeTop.style.transform = 'translateY(-100vh)';
+    tapeBottom.style.transform = 'translateY(100vh)';
+    
+    splash.style.transition = 'opacity 0.6s cubic-bezier(0.76, 0, 0.24, 1), transform 0.6s cubic-bezier(0.76, 0, 0.24, 1)';
+    splash.style.opacity = '0';
+    splash.style.transform = 'scale(1.05)';
+    
+    setTimeout(() => {
+      splash.remove();
+      sessionStorage.setItem('rokkstar_splash_viewed', 'true');
+    }, 600);
+  }, 3800);
+}
+
+function skipSplash() {
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    splash.style.transition = 'opacity 0.4s ease';
+    splash.style.opacity = '0';
+    setTimeout(() => {
+      splash.remove();
+      sessionStorage.setItem('rokkstar_splash_viewed', 'true');
+    }, 400);
+  }
+}
+
+// On Page Load setup
+window.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('rokkstar_lang') || 'en';
+  setLanguage(savedLang);
+  initSplash();
+  
+  // Header scroll solid background toggle
+  const header = document.querySelector('header');
+  function checkScroll() {
+    if (window.scrollY > 80) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', checkScroll, {passive:true});
+  checkScroll();
+});
+
+// Testimonial Slideshow logic
+let currentSlide = 0;
+const slides = document.querySelectorAll('.test-slide');
+
+function changeSlide(direction) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + direction + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+// Auto-rotate testimonials
+setInterval(() => {
+  changeSlide(1);
+}, 6000);
+
+// FAQ Toggle
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const ans = item.querySelector('.faq-a');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{ i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null; });
+  if(!wasOpen){ item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+}
+
+const topBtn = document.getElementById('toTop');
+window.addEventListener('scroll', ()=>{ topBtn.classList.toggle('show', window.scrollY > 700); }, {passive:true});
+
+// reveal on scroll
+const els = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+els.forEach(el=>io.observe(el));
+
+// measuring tape ticks + scroll marker
+const ticksG = document.getElementById('ticks');
+const tapeHeight = 500;
+for(let i=0;i<=50;i++){
+  const y = i*10;
+  const long = i%5===0;
+  const tick = document.createElementNS('http://www.w3.org/2000/svg','line');
+  tick.setAttribute('x1', long ? 9 : 11);
+  tick.setAttribute('x2', 17);
+  tick.setAttribute('y1', y);
+  tick.setAttribute('y2', y);
+  tick.setAttribute('stroke-width', long ? 1 : .6);
+  ticksG.appendChild(tick);
+}
+const dot = document.getElementById('tapeDot');
+function updateTape(){
+  const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  const y = Math.min(Math.max(scrollPct,0),1) * tapeHeight;
+  dot.setAttribute('cy', y);
+}
+window.addEventListener('scroll', updateTape, {passive:true});
+updateTape();
+function toggleMobileMenu() {
+  const navlinks = document.querySelector('.navlinks');
+  const btn = document.getElementById('mobileMenuBtn');
+  navlinks.classList.toggle('mobile-active');
+  btn.classList.toggle('active');
+}
+</script>
+</body>
+</html>  
