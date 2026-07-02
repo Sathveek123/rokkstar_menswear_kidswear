@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -400,7 +400,7 @@ header.scrolled {
 .btn.dark:hover{background:var(--ink); color:var(--cream-text);}
 
 /* Hamburger toggle */
-.menu-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:450; flex-shrink:0;}
+.menu-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:10000; flex-shrink:0; position:relative;}
 .menu-toggle span{width:22px; height:1.5px; background:var(--cream-text); transition:all 0.3s ease; display:block;}
 .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(4px, 4px);}
 .menu-toggle.active span:nth-child(2){opacity:0;}
@@ -408,7 +408,25 @@ header.scrolled {
 
 /* ─── MOBILE: Collapse to hamburger ─── */
 @media(max-width:1020px){
-  .nav { grid-template-columns: auto auto auto; height: 64px; gap: 20px; padding: 0 24px; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    padding: 0 24px;
+  }
+  .logo {
+    position: relative;
+    z-index: 10000;
+  }
+  .nav-cta {
+    margin-left: auto;
+    margin-right: 16px;
+    z-index: 450;
+  }
+  .menu-toggle {
+    display: flex;
+  }
   .navlinks {
     display: none;
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -438,7 +456,6 @@ header.scrolled {
   .nav-dropdown:hover .nav-drop-menu { transform: none; }
   .nav-drop-menu a { padding: 10px 20px; font-size: .88rem; }
   .nav-drop-arrow { display: none; }
-  .menu-toggle { display: flex; }
 }
 @media(max-width:560px){
   .nav { padding: 0 18px; }
@@ -2729,6 +2746,7 @@ updateTape();
 function toggleMobileMenu() {
   const navlinks = document.querySelector('.navlinks');
   const btn = document.getElementById('mobileMenuBtn');
+  const toTopBtn = document.getElementById('toTop');
   if (navlinks && btn) {
     navlinks.classList.toggle('mobile-active');
     btn.classList.toggle('active');
@@ -2736,9 +2754,11 @@ function toggleMobileMenu() {
     if (navlinks.classList.contains('mobile-active')) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
+      if (toTopBtn) toTopBtn.style.display = 'none';
     } else {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
+      if (toTopBtn) toTopBtn.style.display = '';
     }
   }
 }
