@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ROKKSTAR — Kidswear Collection · Premium Boutique Vijayawada</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -580,8 +580,16 @@ window.addEventListener('DOMContentLoaded', () => {
 function toggleMobileMenu() {
   const navlinks = document.querySelector('.navlinks');
   const btn = document.getElementById('mobileMenuBtn');
-  navlinks.classList.toggle('mobile-active');
-  btn.classList.toggle('active');
+  if (navlinks && btn) {
+    navlinks.classList.toggle('mobile-active');
+    btn.classList.toggle('active');
+    // Prevent body scroll when menu is open
+    if (navlinks.classList.contains('mobile-active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
 }
 </script>
 </body>
