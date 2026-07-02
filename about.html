@@ -511,6 +511,52 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
   input, textarea, select { font-size: 16px !important; }
   p, h1, h2, h3, h4, span, li, td, th { word-break: break-word; overflow-wrap: break-word; }
 }
+
+/* === REVEAL SCROLL ANIMATION === */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === FOOTER === */
+footer {
+  background: var(--ink);
+  color: rgba(244,236,221,0.6);
+  border-top: 1px solid rgba(201,160,106,0.15);
+  padding: 36px 0;
+}
+.foot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+.foot-links {
+  display: flex;
+  gap: 24px;
+}
+.foot-links a { opacity: 0.6; transition: opacity 0.2s; }
+.foot-links a:hover { opacity: 1; color: var(--brass-light); }
+@media(max-width: 640px) {
+  .foot-row { flex-direction: column; text-align: center; gap: 16px; }
+  .foot-links { justify-content: center; }
+}
+
+/* === ABOUT MOBILE TWEAKS === */
+@media(max-width: 640px) {
+  .about-hero { padding: 120px 0 70px; }
+  .journey-footer { padding: 70px 0; }
+  #shop-pride { padding: 70px 0; }
+  #philosophy { padding: 60px 0; }
+}
 </style>
 </head>
 <body class="lang-en">
