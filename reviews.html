@@ -159,10 +159,11 @@ header.scrolled {
 @media(max-width:1020px){
   .nav { grid-template-columns: auto auto auto; height:64px; gap:20px; padding:0 24px; }
   .navlinks {
-    display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
-    background:rgba(17,13,10,0.99); backdrop-filter:blur(24px);
-    flex-direction:column; gap:0; overflow-y:auto; z-index:500;
-    padding:24px 0 60px; align-items:stretch;
+    display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+    width:100vw; height:100vh; height:100dvh;
+    background:rgba(17,13,10,1); backdrop-filter:blur(24px);
+    flex-direction:column; gap:0; overflow-y:auto; z-index:9999;
+    padding:80px 0 60px; align-items:stretch;
     border-top:1px solid rgba(201,160,106,.15);
   }
   .navlinks.mobile-active { display:flex; }
@@ -683,11 +684,13 @@ function toggleMobileMenu() {
   if (navlinks && btn) {
     navlinks.classList.toggle('mobile-active');
     btn.classList.toggle('active');
-    // Prevent body scroll when menu is open
+    // Prevent body and html scroll when menu is open
     if (navlinks.classList.contains('mobile-active')) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   }
 }
