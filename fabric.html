@@ -238,6 +238,12 @@ header.scrolled {
   gap: 24px;
   margin-top: 40px;
 }
+@media(max-width: 600px) {
+  .materials-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
 .material-card {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -339,6 +345,12 @@ header.scrolled {
   gap: 28px;
   margin-top: 40px;
 }
+@media(max-width: 600px) {
+  .care-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
 .care-card {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -404,6 +416,16 @@ footer {
 }
 .foot-links a:hover {
   color: var(--brass-light);
+}
+@media(max-width: 600px) {
+  .foot-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .foot-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 </style>
 </head>
